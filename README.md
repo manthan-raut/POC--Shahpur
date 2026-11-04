@@ -44,12 +44,12 @@ The portal integrates live spatial MapServer services from **MRSAC (Maharashtra 
   - Direct connection to live MRSAC MapServer (`Test2/MapServer`) centered on Shahapur (`76.3857°E, 18.7247°N`).
   - 15 operational feature layers grouped into Boundaries, Roads & Rail, Utilities, Structures, and Labels.
   - Esri Satellite (World Imagery) is the default basemap on load.
-  - Ward → Property query flow: choose a Ward to show its boundary, then pick a Property from that ward to highlight it (magenta) inside the cyan ward boundary and open its details.
+  - Ward query: choosing a Ward shows its boundary and only that ward's buildings; map search is limited to the selected ward. The building whose details are open is outlined in magenta.
   - External base layers: Google Satellite, Google Hybrid, and Maharashtra District/Taluka WMS layers.
   - Interactive toolbar: Area & Distance measurement widgets, Basemap switcher, Coordinate tracking, and Reset Extent.
   - Spatial masking: Ward-specific boundary isolation with in-memory geometry caching.
   - Property panel shows one unit (partition / flat) at a time with a slider (◀ ▶, range bar, jump list, ← → keys). Each slide shows only that unit's own photos (A, B) and plan.
-  - Photo / plan viewer with zoom slider, mouse-wheel and double-click zoom, and drag-to-pan.
+  - Clicking any photo or thumbnail expands it in a viewer with zoom slider, mouse-wheel and double-click zoom, and drag-to-pan.
 
 - **Property Tax Assessment Records**:
   - Ward-wise property assessment data table with instant search and multi-ward filtering.
@@ -58,11 +58,10 @@ The portal integrates live spatial MapServer services from **MRSAC (Maharashtra 
   - Detailed property inspection modal displaying owner name, assessed tax, paid amount, pending balance, and payment status.
   - Excel import updates only the columns present in the uploaded sheet (no default values are written).
 
-- **Municipal Reporting Engine**:
-  - Filter by report type: Ward-wise Tax Collection, Unpaid Properties, Defaulters List.
-  - Instant PDF report generation with municipal header, formatted auto-tables, and timestamps.
-  - Formatted Excel export via SheetJS (`.xlsx`) with typed column headers.
-  - RFC 4180-compliant CSV export with UTF-8 BOM encoding for Marathi and English compatibility.
+- **Reports (register data only)**:
+  - Ward-wise Assessment Summary, Property Register, High Tax Demand, Unassessed Units and Data Gaps (units missing a photo, plan or map footprint).
+  - Ward / status / minimum-demand / gap filters with an on-screen preview of the same rows that are exported.
+  - PDF (jsPDF AutoTable), Excel (SheetJS, numeric columns) and CSV (UTF-8 BOM for Marathi) exports.
 
 ---
 

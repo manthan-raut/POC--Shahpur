@@ -10,7 +10,7 @@ console.log('[Shahapur GIS - Reports] Loading reports.js module...');
 const REPORT_WARDS = ['1', '2', '3', '4', '5'];
 const repEsc = v => String(v === null || v === undefined ? '' : v)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const repMoney = n => '₹' + Number(n || 0).toLocaleString('en-IN');
+const repMoney = n => '₹' + Math.round(Number(n || 0)).toLocaleString('en-IN');
 const repPct = (a, b) => (b ? (a / b * 100) : 0).toFixed(1) + '%';
 
 // Columns shared by the unit-level reports

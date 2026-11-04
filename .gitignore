@@ -7,11 +7,14 @@ Desktop.ini
 # Temporary files
 *.tmp
 *.log
-*.zip
 __pycache__/
 *.pyc
 
-# Heavy media assets & archives (1.3+ GB)
-Shahapur photos/
-PLANS/
+# Archives (too large for GitHub; originals are kept locally)
+*.zip
 
+# Media kept local only:
+#  - WMF plan originals (the site uses PLANS/PLANS_PNG)
+#  - full-size originals of photos shrunk by scripts/optimize_photos.py
+PLANS/PLANS/
+Shahapur photos originals/

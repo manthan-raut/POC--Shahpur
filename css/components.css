@@ -52,14 +52,27 @@ h4, .h4 { font-size: 0.9rem; font-weight: 700; }
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-inverse);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #f1f5f9;
+  border-color: #94a3b8;
 }
+
+.btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Inverse variant on dark toolbars */
+.lightbox-zoom-toolbar .btn-secondary,
+.print-modal-toolbar .btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-inverse);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.lightbox-zoom-toolbar .btn-secondary:hover,
+.print-modal-toolbar .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); }
 
 .btn-icon {
   width: 2.5rem;
