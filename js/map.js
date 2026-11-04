@@ -16,7 +16,7 @@ const DEFAULT_BASEMAP = "satellite";
 // Predefined Layer Definitions (IDs 0 to 14)
 const LAYER_DEFS = [
   { id: 0, title: "Council Boundary", group: "Boundaries", defaultVisibility: true },
-  { id: 14, title: "Ward Boundary", group: "Boundaries", defaultVisibility: true },
+  { id: 14, title: "Ward Boundary", group: "Boundaries", defaultVisibility: false },
   { id: 11, title: "Landuse", group: "Boundaries", defaultVisibility: false },
   
   { id: 7, title: "Kutcha Road", group: "Roads & Rail", defaultVisibility: false },
@@ -27,7 +27,7 @@ const LAYER_DEFS = [
   { id: 13, title: "Solar Panel", group: "Utilities", defaultVisibility: false },
   { id: 6, title: "High Tension Line", group: "Utilities", defaultVisibility: false },
   
-  { id: 2, title: "Building (Properties)", group: "Structures", defaultVisibility: true },
+  { id: 2, title: "Building (Properties)", group: "Structures", defaultVisibility: false },
   { id: 3, title: "Compound Wall", group: "Structures", defaultVisibility: false },
   { id: 5, title: "Fencing", group: "Structures", defaultVisibility: false },
   { id: 1, title: "Bridge", group: "Structures", defaultVisibility: false },
@@ -164,7 +164,7 @@ function initMap() {
         ],
         geometryType: "polygon",
         spatialReference: { wkid: 3857 },
-        visible: true,
+        visible: false, // shown only after a ward is selected (js/layers.js)
         popupEnabled: false,
         renderer: {
           type: "simple",
@@ -219,7 +219,7 @@ function initMap() {
         ],
         geometryType: "polygon",
         spatialReference: { wkid: 3857 },
-        visible: true,
+        visible: false, // shown only after a ward is selected (js/layers.js)
         renderer: {
           type: "simple",
           symbol: {
@@ -416,6 +416,13 @@ function setupMapUI() {
     <div id="search-results-list" class="search-results-list"></div>
   `;
   mapMount.appendChild(searchBox);
+
+  // Empty-state hint: no property data is shown until a ward is chosen
+  const wardHint = document.createElement('div');
+  wardHint.className = 'map-ward-hint';
+  wardHint.id = 'map-ward-hint';
+  wardHint.innerHTML = '<i class="ph ph-map-pin-area"></i> Select a Ward in the Query Section to view its properties';
+  mapMount.appendChild(wardHint);
 
   // Map Loading Overlay Indicator
   const mapLoader = document.createElement('div');

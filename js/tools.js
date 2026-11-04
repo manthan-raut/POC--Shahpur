@@ -2,6 +2,12 @@
 
 console.log('[Shahapur GIS - Tools] Loading tools.js module...');
 
+/** Ward chosen in the map Query Section, or null when none is selected. */
+window.getSelectedWard = function() {
+  const sel = document.getElementById('ward-select');
+  return sel && /^\d+$/.test(sel.value) ? sel.value : null;
+};
+
 window.initTools = function(view) {
   console.info('[Shahapur GIS - Tools] window.initTools() called. Requiring widgets...');
   require([
@@ -112,6 +118,8 @@ function setupIdentify(view) {
       console.log('[Shahapur GIS - Tools] Buffer tool is active, skipping Identify query.');
       return;
     }
+    // No property data is shown (or identifiable) until a ward is selected
+    if (!window.getSelectedWard()) return;
 
     console.log('[Shahapur GIS - Tools] Map clicked at:', {
       lon: event.mapPoint ? event.mapPoint.longitude.toFixed(5) : null,
@@ -170,9 +178,12 @@ function setupSearch(view) {
       return;
     }
 
-    // When a ward is selected on the map, search only inside that ward
-    const wardSel = document.getElementById('ward-select');
-    const ward = wardSel && wardSel.value !== 'All' ? wardSel.value : null;
+    // Search only inside the selected ward; nothing is searchable before one is chosen
+    const ward = window.getSelectedWard();
+    if (!ward) {
+      resultsContainer.innerHTML = '<div class="search-item text-muted">Select a Ward first to search its properties.</div>';
+      return;
+    }
     const matches = window.TaxDataService.searchRecords(val)
       .filter(m => !ward || String(m.wardNo) === ward)
       .slice(0, 10);

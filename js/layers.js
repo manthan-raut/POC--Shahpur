@@ -199,26 +199,18 @@ function applyWardSpatialMask(wardNo) {
     const councilLayer = window.featureGroupLayer ? window.featureGroupLayer.findLayerById("feature-layer-0") : null;
 
     if (!wardNo || wardNo === 'All') {
-      console.info('[Shahapur GIS - Layers] "All Wards" selected. Showing Council, Ward Boundaries & Buildings across Shahapur.');
-      if (wardFeatureLayer) {
-        wardFeatureLayer.definitionExpression = null;
-        wardFeatureLayer.visible = true;
-      }
-      if (buildingLayer) {
-        buildingLayer.definitionExpression = null;
-        buildingLayer.visible = true;
-      }
-      if (councilLayer) {
-        councilLayer.visible = true;
-      }
-      
+      // No ward selected: show no property data at all, only the council outline
+      console.info('[Shahapur GIS - Layers] No ward selected. Hiding all property data layers.');
       if (window.featureGroupLayer) {
         window.featureGroupLayer.layers.forEach(fl => {
           fl.featureEffect = null;
+          fl.definitionExpression = null;
+          fl.visible = fl.id === "feature-layer-0";
         });
       }
-
-      syncLayerUICheckboxes({ 0: true, 2: true, 14: true });
+      syncLayerUICheckboxes({ 0: true });
+      const hint = document.getElementById('map-ward-hint');
+      if (hint) hint.hidden = false;
       if (window.zoomToFullDatasetExtent) window.zoomToFullDatasetExtent();
       if (window.hideMapLoader) window.hideMapLoader();
       return;
@@ -232,6 +224,9 @@ function applyWardSpatialMask(wardNo) {
       console.warn('[Shahapur GIS - Layers] Cannot apply mask: feature-layer-14 is missing.');
       return;
     }
+
+    const hint = document.getElementById('map-ward-hint');
+    if (hint) hint.hidden = true;
 
     // Show Map Loading Overlay
     if (window.showMapLoader) window.showMapLoader(`Filtering Ward ${wardNo} Data...`);

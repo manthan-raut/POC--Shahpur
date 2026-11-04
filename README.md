@@ -44,6 +44,7 @@ The portal integrates live spatial MapServer services from **MRSAC (Maharashtra 
   - Direct connection to live MRSAC MapServer (`Test2/MapServer`) centered on Shahapur (`76.3857°E, 18.7247°N`).
   - 15 operational feature layers grouped into Boundaries, Roads & Rail, Utilities, Structures, and Labels.
   - Esri Satellite (World Imagery) is the default basemap on load.
+  - No property data is shown (or clickable / searchable) until a Ward is selected; only the council outline is drawn.
   - Ward query: choosing a Ward shows its boundary and only that ward's buildings; map search is limited to the selected ward. The building whose details are open is outlined in magenta.
   - External base layers: Google Satellite, Google Hybrid, and Maharashtra District/Taluka WMS layers.
   - Interactive toolbar: Area & Distance measurement widgets, Basemap switcher, Coordinate tracking, and Reset Extent.
