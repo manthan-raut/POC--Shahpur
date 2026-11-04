@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ward-wise Tax Collection GIS Portal</title>
+  
+  <!-- Browser Extension Safety Shield & Third-Party Crash Guard -->
+  <script>
+    window.BHK = window.BHK || { install: function(){}, init: function(){}, widget: {} };
+    window.buyhatke = window.buyhatke || {};
+    window.addEventListener('error', function(e) {
+      if (e.filename && (e.filename.includes('content.ts') || e.filename.includes('affiliate') || e.filename.includes('extension') || e.filename.includes('BHK'))) {
+        e.stopImmediatePropagation();
+        return true;
+      }
+    }, true);
+  </script>
+
+  <!-- CSS -->
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <!-- Icons (Phosphor Icons) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <!-- Landing View -->
+  <main id="landing-view" class="view-active hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">Civic Infrastructure System</div>
+      <h1 class="hero-title">Ward-wise Property Tax GIS Portal</h1>
+      <p class="hero-subtitle">Interactive mapping and data visualization platform for municipal tax administration.</p>
+      <button id="btn-show-login" class="btn btn-primary btn-lg btn-nested">
+        <span>Access Portal</span>
+        <div class="btn-inner-icon">
+          <i class="ph ph-arrow-right"></i>
+        </div>
+      </button>
+    </div>
+  </main>
+
+  <!-- Login View -->
+  <main id="login-view" class="view-hidden login-section">
+    <div class="double-bezel-card login-card">
+      <div class="card-inner">
+        <button id="btn-back-home" class="btn-icon mb-4">
+          <i class="ph ph-arrow-left"></i>
+        </button>
+        <h2 class="h2 mb-2">Welcome Back</h2>
+        <p class="text-muted mb-6">Enter your credentials to access the portal.</p>
+        
+        <form id="login-form">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="admin@gmail.com" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••" required>
+          </div>
+          <div id="login-error" class="error-message"></div>
+          <button type="submit" class="btn btn-primary w-full mt-4">Login</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Simple view switcher
+    document.getElementById('btn-show-login').addEventListener('click', () => {
+      document.getElementById('landing-view').classList.remove('view-active');
+      document.getElementById('landing-view').classList.add('view-hidden');
+      document.getElementById('login-view').classList.remove('view-hidden');
+      document.getElementById('login-view').classList.add('view-active');
+    });
+
+    document.getElementById('btn-back-home').addEventListener('click', () => {
+      document.getElementById('login-view').classList.remove('view-active');
+      document.getElementById('login-view').classList.add('view-hidden');
+      document.getElementById('landing-view').classList.remove('view-hidden');
+      document.getElementById('landing-view').classList.add('view-active');
+    });
+  </script>
+</body>
+</html>

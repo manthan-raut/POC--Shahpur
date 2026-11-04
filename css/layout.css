@@ -1,0 +1,329 @@
+/* css/layout.css */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Landing & Login Specific Layout */
+.view-hidden {
+  display: none !important;
+}
+
+.view-active {
+  display: flex;
+  flex: 1;
+}
+
+.hero-section {
+  background: radial-gradient(circle at top left, var(--color-bg-base) 0%, #E9ECEF 100%);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.login-section {
+  background: var(--color-bg-base);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* App Shell Layout */
+.app-body {
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  height: 56px;
+  background: linear-gradient(180deg, #0b5577 0%, #084059 100%);
+  color: var(--color-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 50;
+  position: relative;
+  border-bottom: 2px solid #00B4D8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.emblem-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.header-portal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.header-sidebar-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-radius: 4px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.header-sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Header Center Navigation Links */
+.header-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 1rem;
+}
+
+.header-nav-item {
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 200ms ease;
+}
+
+.header-nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.header-nav-item.active {
+  color: #ffffff;
+  background: #00B4D8;
+  box-shadow: 0 2px 6px rgba(0, 180, 216, 0.4);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Header Modules Collapse Dropdown Wrap */
+.header-dropdown-wrap {
+  position: relative;
+}
+
+.btn-header-collapse {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.btn-header-collapse:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  width: 210px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  padding: 0.4rem 0;
+  z-index: 100;
+}
+
+.header-dropdown-menu.hidden {
+  display: none;
+}
+
+.header-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  color: #334155;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.header-dropdown-item:hover {
+  background: #f0f7fa;
+  color: #00B4D8;
+}
+
+.header-dropdown-item.active {
+  background: rgba(0, 180, 216, 0.1);
+  color: #00B4D8;
+  font-weight: 700;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0.35rem 0;
+}
+
+.btn-dropdown-action {
+  color: #0b5577;
+  font-weight: 600;
+}
+
+.btn-logout-pill {
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 200ms ease;
+}
+
+.btn-logout-pill:hover {
+  background: #B91C1C;
+}
+
+
+.app-container {
+  display: flex;
+  height: calc(100vh - 56px);
+  position: relative;
+}
+
+
+
+/* Content Area - 100% Full Width */
+.content-area {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  /* sections scroll internally */
+}
+
+.page-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.15rem 1.5rem;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  z-index: 10;
+}
+
+.page-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page-section::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 99px;
+}
+
+.page-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.page-section.active-section {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  z-index: 20;
+}
+
+#sec-map {
+  padding: 0;
+  /* Map bleeds full */
+  overflow: hidden;
+}
+
+.full-bleed-map {
+  width: 100%;
+  height: 100%;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+}
+
+.section-header p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .page-section {
+    padding: 1rem;
+  }
+}
