@@ -120,17 +120,17 @@ window.renderDashboard = function() {
       </div>
     </div>
 
-    <!-- Row 2: Monthly Tax Collection + Spatial Overview + Annual Target -->
-    <div class="db-grid-row-3">
+    <!-- Row 2: Monthly Tax Collection + Spatial Overview (Balanced & Rich) -->
+    <div class="db-grid-row-2">
       <!-- Monthly Tax Collection Overview Bar Chart -->
-      <div class="db-card col-span-2">
+      <div class="db-card db-tax-card">
         <div class="db-card-header">
           <div>
             <div class="db-card-amount-wrap">
               <span class="db-card-amount">₹84.0L</span>
               <span class="db-badge green"><i class="ph ph-trend-up"></i> +18.4% YoY</span>
             </div>
-            <div class="db-card-sub">Monthly tax collection & pending assessment overview</div>
+            <div class="db-card-sub">Monthly tax collection & pending assessment overview (FY 2026-27)</div>
           </div>
           <div class="db-legend">
             <span class="db-legend-item"><span class="dot green"></span> Collected (₹68.5L)</span>
@@ -140,96 +140,100 @@ window.renderDashboard = function() {
         <div class="db-chart-container" style="height: 195px;">
           <canvas id="chart-monthly-tax"></canvas>
         </div>
+        <div class="monthly-tax-summary-strip">
+          <div class="mt-stat">
+            <span class="mt-lbl">Total Achieved</span>
+            <span class="mt-val">₹84.0L <small class="pos">(+18.4%)</small></span>
+          </div>
+          <div class="mt-stat">
+            <span class="mt-lbl">Monthly Average</span>
+            <span class="mt-val">₹12.0L <small class="text-muted">/ mo</small></span>
+          </div>
+          <div class="mt-stat">
+            <span class="mt-lbl">Peak Month</span>
+            <span class="mt-val">October <small class="pos">(₹22.5L)</small></span>
+          </div>
+          <div class="mt-stat">
+            <span class="mt-lbl">Target Run Rate</span>
+            <span class="mt-val">84.0% <small class="pos">On Track</small></span>
+          </div>
+        </div>
       </div>
 
-      <!-- Spatial Overview & Target Cards -->
-      <div class="db-card-stack">
-        <!-- Spatial Overview Box -->
-        <div class="db-card">
-          <div class="db-card-header">
-            <span class="db-card-title"><i class="ph ph-map-trifold"></i> Spatial Overview</span>
-            <a href="#/map" class="db-link">Full Map ↗</a>
-          </div>
-          <div class="db-map-preview-thumb" onclick="window.location.hash='#/map'" title="Click to open Full GIS Map">
-            <div class="map-thumb-overlay">
-              <div class="thumb-header-row">
-                <span class="thumb-badge"><span class="pulse-dot"></span> LIVE EXTENT</span>
-                <span class="thumb-coord">19°27'N, 73°19'E</span>
-              </div>
-              <span class="thumb-label p1"><span class="pin-dot" style="background:#38bdf8;"></span> W1 Prabhag 1</span>
-              <span class="thumb-label p2"><span class="pin-dot" style="background:#4ade80;"></span> W2 Prabhag 2</span>
-              <span class="thumb-label p3"><span class="pin-dot" style="background:#fbbf24;"></span> W3 Prabhag 3</span>
-              <span class="thumb-label p4"><span class="pin-dot" style="background:#a78bfa;"></span> W4 Prabhag 4</span>
-              <div class="thumb-footer-row">
-                <span>Scale: 1:50,000</span>
-                <span>Active Layers: 9</span>
-              </div>
+      <!-- Spatial Overview Card (Elevated, Large, Clean Live GIS Map) -->
+      <div class="db-card db-spatial-card">
+        <div class="db-card-header">
+          <div>
+            <div class="db-card-title">
+              <i class="ph ph-map-trifold" style="color: #0ea5e9;"></i>
+              <span>Spatial Overview</span>
+              <span class="db-badge blue"><span class="pulse-dot"></span> LIVE GIS</span>
             </div>
+            <div class="db-card-sub">Shahapur Municipal Extent • 18.7247° N, 76.3857° E</div>
+          </div>
+          <div class="spatial-card-actions">
+            <div class="spatial-ward-pills">
+              <button class="spatial-pill active" data-ward="All" title="View Full Shahapur Extent">All</button>
+              <button class="spatial-pill" data-ward="1" title="Focus Ward 1 (Prabhag 1)">W1</button>
+              <button class="spatial-pill" data-ward="2" title="Focus Ward 2 (Prabhag 2)">W2</button>
+              <button class="spatial-pill" data-ward="3" title="Focus Ward 3 (Prabhag 3)">W3</button>
+              <button class="spatial-pill" data-ward="4" title="Focus Ward 4 (Prabhag 4)">W4</button>
+            </div>
+            <a href="#/map" class="db-link" title="Open Full GIS Map Studio">Full Map ↗</a>
           </div>
         </div>
 
-        <!-- Annual Target Box -->
-        <div class="db-card">
-          <div class="db-card-header">
-            <div>
-              <div class="db-card-title"><i class="ph ph-target"></i> Annual Target Tracking</div>
-              <div class="db-card-sub">Council FY 2026-27 Revenue Goal</div>
+        <div class="db-spatial-map-wrapper">
+          <!-- Live ArcGIS / Web Map Container -->
+          <div id="db-mini-map-view" class="db-mini-map-canvas"></div>
+
+          <!-- Sleek Map Overlay Controls -->
+          <div class="spatial-map-overlay">
+            <div class="spatial-top-bar">
+              <div class="spatial-meta-chip">
+                <i class="ph ph-crosshair"></i>
+                <span id="mini-map-coords">18.7247°N, 76.3857°E</span>
+              </div>
+              <div class="spatial-zoom-controls">
+                <button id="btn-mini-zoom-in" class="mini-zoom-btn" title="Zoom In"><i class="ph ph-plus"></i></button>
+                <button id="btn-mini-zoom-out" class="mini-zoom-btn" title="Zoom Out"><i class="ph ph-minus"></i></button>
+                <button id="btn-mini-recenter" class="mini-zoom-btn" title="Reset Extent"><i class="ph ph-arrows-in"></i></button>
+              </div>
             </div>
-            <span class="db-badge blue">On Track</span>
-          </div>
-          <div class="db-target-vals">
-            <span class="curr">₹84.0L <small class="text-muted" style="font-size:0.7rem; font-weight:500;">(84.0%)</small></span>
-            <span class="tot">₹100.0L Target</span>
-          </div>
-          <div class="db-progress-bg">
-            <div class="db-progress-fill" style="width: 84%;"></div>
-          </div>
-          <div class="target-sub-metrics">
-            <span><i class="ph ph-check-circle" style="color: #10b981;"></i> ₹16.0L Remaining Gap</span>
-            <span><i class="ph ph-calendar"></i> 147 Days Left</span>
+
+            <div class="spatial-bottom-bar">
+              <div class="spatial-legend-chip">
+                <span class="leg-dot council"></span> Council Boundary
+                <span class="leg-dot ward"></span> Wards 1–4
+              </div>
+              <span class="spatial-status-tag"><i class="ph ph-shield-check"></i> MRSAC Certified</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Row 3: Land Use Donut + Building Classification + Financial Health -->
-    <div class="db-grid-row-3 mt-4">
-      <!-- Land Use Distribution Donut -->
+    <!-- Row 3: Annual Target + Financial Health + Land Use Donut + Building Classification -->
+    <div class="db-grid-row-4 mt-4">
+      <!-- Annual Target Tracking -->
       <div class="db-card">
         <div class="db-card-header">
           <div>
-            <div class="db-card-title"><i class="ph ph-plant"></i> Land Use Distribution</div>
-            <div class="db-card-sub">4.8 sq.km area classification breakdown</div>
+            <div class="db-card-title"><i class="ph ph-target"></i> Annual Target</div>
+            <div class="db-card-sub">Council FY 2026-27 Goal</div>
           </div>
-          <span class="db-badge blue">6 Zones</span>
+          <span class="db-badge blue">On Track</span>
         </div>
-        <div class="db-chart-container" style="height: 165px;">
-          <canvas id="chart-landuse"></canvas>
-          <div class="donut-center-info">
-            <span class="val">4,812</span>
-            <span class="lbl">Hectares</span>
-          </div>
+        <div class="db-target-vals">
+          <span class="curr">₹84.0L <small class="text-muted" style="font-size:0.7rem; font-weight:500;">(84.0%)</small></span>
+          <span class="tot">₹100.0L Target</span>
         </div>
-        <div class="db-donut-legend">
-          <div class="donut-leg-item"><span class="dot" style="background:#6366f1;"></span> Residential <b>42%</b></div>
-          <div class="donut-leg-item"><span class="dot" style="background:#0ea5e9;"></span> Commercial <b>18%</b></div>
-          <div class="donut-leg-item"><span class="dot" style="background:#10b981;"></span> Agricultural <b>15%</b></div>
-          <div class="donut-leg-item"><span class="dot" style="background:#f59e0b;"></span> Open Space <b>10%</b></div>
-          <div class="donut-leg-item"><span class="dot" style="background:#64748b;"></span> Industrial <b>8%</b></div>
-          <div class="donut-leg-item"><span class="dot" style="background:#8b5cf6;"></span> Utility <b>7%</b></div>
+        <div class="db-progress-bg">
+          <div class="db-progress-fill" style="width: 84%;"></div>
         </div>
-      </div>
-
-      <!-- Building Classification Stacked Bar -->
-      <div class="db-card">
-        <div class="db-card-header">
-          <div>
-            <div class="db-card-title"><i class="ph ph-buildings"></i> Building Classification</div>
-            <div class="db-card-sub">1,482 mapped structures across wards</div>
-          </div>
-        </div>
-        <div class="db-chart-container" style="height: 175px;">
-          <canvas id="chart-building-class"></canvas>
+        <div class="target-sub-metrics" style="margin-top: 0.65rem;">
+          <span><i class="ph ph-check-circle" style="color: #10b981;"></i> ₹16.0L Gap</span>
+          <span><i class="ph ph-calendar"></i> 147 Days Left</span>
         </div>
       </div>
 
@@ -238,21 +242,18 @@ window.renderDashboard = function() {
         <div class="db-card-header">
           <div>
             <div class="db-card-title"><i class="ph ph-trend-up"></i> Financial Health</div>
-            <div class="db-card-sub">Tax collection compliance status</div>
+            <div class="db-card-sub">Compliance status</div>
           </div>
-          <span class="db-badge green">↗ +12.5% YoY</span>
+          <span class="db-badge green">↗ +12.5%</span>
         </div>
-        <div class="db-fin-top">
-          <div class="db-fin-val">₹105.6L <span class="lbl">Total Assessed</span></div>
-        </div>
-        <div class="db-gauge-wrap">
+        <div class="db-gauge-wrap" style="height: 105px;">
           <canvas id="chart-fin-gauge"></canvas>
           <div class="gauge-center-text">
             <span class="rate">80%</span>
-            <span class="sub">RECOVERY RATE</span>
+            <span class="sub">RECOVERY</span>
           </div>
         </div>
-        <div class="db-fin-grid">
+        <div class="db-fin-grid" style="margin-top: 0.35rem;">
           <div class="db-fin-stat">
             <span class="fin-stat-lbl">Assessed</span>
             <span class="fin-stat-val">₹105.6L</span>
@@ -265,6 +266,45 @@ window.renderDashboard = function() {
             <span class="fin-stat-lbl">Pending</span>
             <span class="fin-stat-val text-warning">₹21.6L</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Land Use Distribution Donut -->
+      <div class="db-card">
+        <div class="db-card-header">
+          <div>
+            <div class="db-card-title"><i class="ph ph-plant"></i> Land Use</div>
+            <div class="db-card-sub">4.8 sq.km breakdown</div>
+          </div>
+          <span class="db-badge blue">6 Zones</span>
+        </div>
+        <div class="db-chart-container" style="height: 140px;">
+          <canvas id="chart-landuse"></canvas>
+          <div class="donut-center-info">
+            <span class="val">4,812</span>
+            <span class="lbl">Ha</span>
+          </div>
+        </div>
+        <div class="db-donut-legend" style="grid-template-columns: repeat(2, 1fr); gap: 0.25rem 0.45rem; margin-top: 0.35rem;">
+          <div class="donut-leg-item"><span class="dot" style="background:#6366f1;"></span> Res. <b>42%</b></div>
+          <div class="donut-leg-item"><span class="dot" style="background:#0ea5e9;"></span> Comm. <b>18%</b></div>
+          <div class="donut-leg-item"><span class="dot" style="background:#10b981;"></span> Agri. <b>15%</b></div>
+          <div class="donut-leg-item"><span class="dot" style="background:#f59e0b;"></span> Open <b>10%</b></div>
+          <div class="donut-leg-item"><span class="dot" style="background:#64748b;"></span> Ind. <b>8%</b></div>
+          <div class="donut-leg-item"><span class="dot" style="background:#8b5cf6;"></span> Util. <b>7%</b></div>
+        </div>
+      </div>
+
+      <!-- Building Classification Stacked Bar -->
+      <div class="db-card">
+        <div class="db-card-header">
+          <div>
+            <div class="db-card-title"><i class="ph ph-buildings"></i> Buildings</div>
+            <div class="db-card-sub">1,482 mapped structures</div>
+          </div>
+        </div>
+        <div class="db-chart-container" style="height: 185px;">
+          <canvas id="chart-building-class"></canvas>
         </div>
       </div>
     </div>
@@ -446,8 +486,9 @@ window.renderDashboard = function() {
   // Live REST API Querying from MRSAC MapServer Service
   queryMapServerCounts();
 
-  // Render Charts
+  // Render Charts & Interactive Mini Map
   setTimeout(buildDashboardCharts, 120);
+  setTimeout(initDashboardMiniMap, 160);
 
   // Wire Ward Filter & Refresh Button
   const wardSelect = document.getElementById('db-ward-filter');
@@ -457,12 +498,19 @@ window.renderDashboard = function() {
     wardSelect.addEventListener('change', () => {
       queryMapServerCounts();
       buildDashboardCharts();
+      if (dbMiniMapView) {
+        const selVal = wardSelect.value;
+        const pill = document.querySelector(`.spatial-pill[data-ward="${selVal}"]`);
+        if (pill) pill.click();
+      }
     });
   }
   if (refreshBtn) {
     refreshBtn.addEventListener('click', () => {
       queryMapServerCounts();
       buildDashboardCharts();
+      const resetBtn = document.getElementById('btn-mini-recenter');
+      if (resetBtn) resetBtn.click();
     });
   }
 };
@@ -606,17 +654,21 @@ function buildDashboardCharts() {
               label: 'Collected',
               data: [850, 1450, 1480, 1100, 1720, 1950, 2250],
               backgroundColor: gradCollected,
-              borderRadius: { topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0 },
+              borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 0, bottomRight: 0 },
               borderSkipped: false,
-              maxBarThickness: 32
+              barPercentage: 0.85,
+              categoryPercentage: 0.85,
+              maxBarThickness: 52
             },
             {
               label: 'Pending',
               data: [350, 200, 380, 580, 310, 280, 300],
               backgroundColor: gradPending,
-              borderRadius: { topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0 },
+              borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 0, bottomRight: 0 },
               borderSkipped: false,
-              maxBarThickness: 32
+              barPercentage: 0.85,
+              categoryPercentage: 0.85,
+              maxBarThickness: 52
             }
           ]
         },
@@ -700,9 +752,9 @@ function buildDashboardCharts() {
         data: {
           labels: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4'],
           datasets: [
-            { label: 'Residential', data: [180, 140, 220, 110], backgroundColor: '#4f46e5', borderRadius: 4, maxBarThickness: 28 },
-            { label: 'Commercial', data: [45, 35, 60, 30], backgroundColor: '#f59e0b', borderRadius: 4, maxBarThickness: 28 },
-            { label: 'Civic & Govt', data: [22, 20, 32, 24], backgroundColor: '#0ea5e9', borderRadius: 4, maxBarThickness: 28 }
+            { label: 'Residential', data: [180, 140, 220, 110], backgroundColor: '#4f46e5', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 38 },
+            { label: 'Commercial', data: [45, 35, 60, 30], backgroundColor: '#f59e0b', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 38 },
+            { label: 'Civic & Govt', data: [22, 20, 32, 24], backgroundColor: '#0ea5e9', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 38 }
           ]
         },
         options: {
@@ -821,8 +873,8 @@ function buildDashboardCharts() {
         data: {
           labels: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4'],
           datasets: [
-            { label: 'Installed', data: [32, 24, 45, 12], backgroundColor: gradSolar, borderRadius: 4, maxBarThickness: 18 },
-            { label: 'Planned', data: [15, 18, 10, 28], backgroundColor: '#cbd5e1', borderRadius: 4, maxBarThickness: 18 }
+            { label: 'Installed', data: [32, 24, 45, 12], backgroundColor: gradSolar, borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 24 },
+            { label: 'Planned', data: [15, 18, 10, 28], backgroundColor: '#cbd5e1', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 24 }
           ]
         },
         options: {
@@ -851,8 +903,8 @@ function buildDashboardCharts() {
         data: {
           labels: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4'],
           datasets: [
-            { label: 'Kutcha Road (km)', data: [4.2, 5.1, 3.8, 6.2], backgroundColor: '#10b981', borderRadius: 4, maxBarThickness: 14 },
-            { label: 'Bridges', data: [12, 8, 16, 7], backgroundColor: '#0284c7', borderRadius: 4, maxBarThickness: 14 }
+            { label: 'Kutcha Road (km)', data: [4.2, 5.1, 3.8, 6.2], backgroundColor: '#10b981', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 18 },
+            { label: 'Bridges', data: [12, 8, 16, 7], backgroundColor: '#0284c7', borderRadius: 4, barPercentage: 0.85, categoryPercentage: 0.8, maxBarThickness: 18 }
           ]
         },
         options: {
@@ -944,19 +996,129 @@ function buildDashboardCharts() {
   }
 }
 
-// Router Event Listeners for Dashboard initialization
-window.addEventListener('hashchange', () => {
-  if (window.location.hash === '#/dashboard' || window.location.hash === '' || window.location.hash === '#/') {
-    window.renderDashboard();
+// Dedicated Mini-Map View in Spatial Overview
+let dbMiniMapView = null;
+
+function initDashboardMiniMap() {
+  const mount = document.getElementById('db-mini-map-view');
+  if (!mount) return;
+
+  // Defer slightly if ArcGIS require is not yet ready
+  if (typeof require === 'undefined') {
+    setTimeout(initDashboardMiniMap, 150);
+    return;
   }
-});
 
-if (window.location.hash === '#/dashboard' || window.location.hash === '' || window.location.hash === '#/') {
-  setTimeout(() => {
-    window.renderDashboard();
-  }, 150);
+  require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+  ], (Map, MapView, FeatureLayer) => {
+    // If view already attached to this container, skip rebuild
+    if (dbMiniMapView && dbMiniMapView.container === mount) {
+      return;
+    }
+    if (dbMiniMapView && typeof dbMiniMapView.destroy === 'function') {
+      try { dbMiniMapView.destroy(); } catch(e) {}
+      dbMiniMapView = null;
+    }
+
+    const MAPSERVER_URL = "https://gsc.mrsac.org.in/webadpgis2/rest/services/test/Test2/MapServer";
+
+    // Council Boundary (Layer #0) & Ward Boundary (Layer #14)
+    const councilLyr = new FeatureLayer({
+      url: `${MAPSERVER_URL}/0`,
+      opacity: 0.95,
+      title: "Council Boundary"
+    });
+
+    const wardLyr = new FeatureLayer({
+      url: `${MAPSERVER_URL}/14`,
+      opacity: 0.85,
+      title: "Ward Boundary"
+    });
+
+    const miniMap = new Map({
+      basemap: "hybrid",
+      layers: [councilLyr, wardLyr]
+    });
+
+    dbMiniMapView = new MapView({
+      container: mount,
+      map: miniMap,
+      center: [76.3857, 18.7247],
+      zoom: 13.8,
+      ui: { components: [] },
+      constraints: {
+        rotationEnabled: false,
+        minZoom: 11,
+        maxZoom: 18
+      }
+    });
+
+    // Prevent vertical page scroll interruption
+    dbMiniMapView.on("mouse-wheel", (evt) => {
+      evt.stopPropagation();
+    });
+
+    // Real-time cursor coordinates
+    dbMiniMapView.on("pointer-move", (evt) => {
+      const pt = dbMiniMapView.toMap({ x: evt.x, y: evt.y });
+      if (pt) {
+        const coordsEl = document.getElementById('mini-map-coords');
+        if (coordsEl) {
+          coordsEl.textContent = `${pt.latitude.toFixed(4)}°N, ${pt.longitude.toFixed(4)}°E`;
+        }
+      }
+    });
+
+    // Mini Zoom Controls
+    const btnZoomIn = document.getElementById('btn-mini-zoom-in');
+    const btnZoomOut = document.getElementById('btn-mini-zoom-out');
+    const btnRecenter = document.getElementById('btn-mini-recenter');
+
+    if (btnZoomIn) {
+      btnZoomIn.onclick = (e) => {
+        e.stopPropagation();
+        dbMiniMapView.goTo({ zoom: dbMiniMapView.zoom + 1 }, { duration: 250 });
+      };
+    }
+    if (btnZoomOut) {
+      btnZoomOut.onclick = (e) => {
+        e.stopPropagation();
+        dbMiniMapView.goTo({ zoom: dbMiniMapView.zoom - 1 }, { duration: 250 });
+      };
+    }
+    if (btnRecenter) {
+      btnRecenter.onclick = (e) => {
+        e.stopPropagation();
+        dbMiniMapView.goTo({ center: [76.3857, 18.7247], zoom: 13.8 }, { duration: 400 });
+        document.querySelectorAll('.spatial-pill').forEach(p => p.classList.remove('active'));
+        document.querySelector('.spatial-pill[data-ward="All"]')?.classList.add('active');
+      };
+    }
+
+    // Ward Extents for Interactive Navigation Pills
+    const WARD_EXTENTS = {
+      'All': { center: [76.3857, 18.7247], zoom: 13.8 },
+      '1': { center: [76.3885, 18.7310], zoom: 15.2 },
+      '2': { center: [76.3810, 18.7270], zoom: 15.2 },
+      '3': { center: [76.3830, 18.7180], zoom: 15.2 },
+      '4': { center: [76.3920, 18.7220], zoom: 15.2 }
+    };
+
+    document.querySelectorAll('.spatial-pill').forEach(pill => {
+      pill.onclick = (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.spatial-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const wardKey = pill.getAttribute('data-ward');
+        const target = WARD_EXTENTS[wardKey] || WARD_EXTENTS['All'];
+        dbMiniMapView.goTo(target, { duration: 500 });
+      };
+    });
+  });
 }
-
 
 // Router Event Listeners for Dashboard initialization
 window.addEventListener('hashchange', () => {

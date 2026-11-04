@@ -233,36 +233,52 @@ function setupMapUI() {
       <button class="btn-icon" id="btn-close-basemap"><i class="ph ph-x"></i></button>
     </div>
     <div class="basemap-grid">
-      <div class="basemap-card active" data-bm="topo-vector">
-        <div class="bm-thumb topo"></div>
+      <div class="basemap-card active" data-bm="topo-vector" title="Esri Topographic Map">
+        <div class="bm-thumb topo">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/7dc6cea0b7a34a1996b9e6ff326ad354/info/thumbnail/topo_thumb_b2.jpg" alt="Topographic" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Topographic</span>
       </div>
-      <div class="basemap-card" data-bm="satellite">
-        <div class="bm-thumb sat"></div>
+      <div class="basemap-card" data-bm="satellite" title="Esri Satellite Imagery">
+        <div class="bm-thumb sat">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/10df2279f9684e4a9f6a7f08febac2a9/info/thumbnail/thumbnail1584384938644.jpeg" alt="Esri Satellite" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Esri Satellite</span>
       </div>
-      <div class="basemap-card" data-bm="hybrid">
-        <div class="bm-thumb hyb"></div>
+      <div class="basemap-card" data-bm="hybrid" title="Esri Satellite with Labels">
+        <div class="bm-thumb hyb">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/5ae9e138a17842688b0b79283a4353f6/info/thumbnail/thumbnail.jpg" alt="Esri Hybrid" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Esri Hybrid</span>
       </div>
-      <div class="basemap-card" data-bm="streets-vector">
-        <div class="bm-thumb str"></div>
+      <div class="basemap-card" data-bm="streets-vector" title="Esri Street Map">
+        <div class="bm-thumb str">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/de26a3cf4cc9451298ea173c4b324736/info/thumbnail/thumbnail.jpg" alt="Streets" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Streets</span>
       </div>
-      <div class="basemap-card" data-bm="osm">
-        <div class="bm-thumb osm"></div>
+      <div class="basemap-card" data-bm="osm" title="OpenStreetMap">
+        <div class="bm-thumb osm">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/d0959081a28a4176963e6027a468d6ef/info/thumbnail/thumbnail.jpg" alt="OpenStreetMap" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>OpenStreetMap</span>
       </div>
-      <div class="basemap-card" data-bm="dark-gray-vector">
-        <div class="bm-thumb dark"></div>
+      <div class="basemap-card" data-bm="dark-gray-vector" title="Dark Gray Canvas">
+        <div class="bm-thumb dark">
+          <img src="https://www.arcgis.com/sharing/rest/content/items/1970c1995b8f44749f4b9d6eac525029/info/thumbnail/thumbnail.jpg" alt="Dark Gray" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Dark Gray</span>
       </div>
-      <div class="basemap-card" data-bm="google-satellite">
-        <div class="bm-thumb gsat"></div>
+      <div class="basemap-card" data-bm="google-satellite" title="Google Satellite Imagery">
+        <div class="bm-thumb gsat">
+          <img src="https://mt1.google.com/vt/lyrs=s&x=5842&y=3652&z=13" alt="Google Satellite" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Google Satellite</span>
       </div>
-      <div class="basemap-card" data-bm="google-hybrid">
-        <div class="bm-thumb ghyb"></div>
+      <div class="basemap-card" data-bm="google-hybrid" title="Google Hybrid Map">
+        <div class="bm-thumb ghyb">
+          <img src="https://mt1.google.com/vt/lyrs=y&x=5842&y=3652&z=13" alt="Google Hybrid" loading="lazy" onerror="this.style.opacity='0'">
+        </div>
         <span>Google Hybrid</span>
       </div>
     </div>

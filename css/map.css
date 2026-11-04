@@ -542,56 +542,75 @@
 .basemap-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.6rem;
+  gap: 0.75rem;
   padding: 0.85rem;
-  max-height: 320px;
+  max-height: 380px;
   overflow-y: auto;
 }
 
 .basemap-card {
   border: 1.5px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 0.5rem;
+  border-radius: 8px;
+  padding: 0.45rem;
   text-align: center;
   cursor: pointer;
   transition: all 200ms ease;
   background: #ffffff;
+  position: relative;
 }
 
 .basemap-card:hover {
   border-color: #00B4D8;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 180, 216, 0.15);
 }
 
 .basemap-card.active {
   border-color: #00B4D8;
-  background: #f0f7fa;
-  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+  background: #f0f9ff;
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.25);
 }
 
 .basemap-card span {
   font-size: 0.725rem;
   font-weight: 600;
-  color: #334155;
+  color: #1e293b;
   display: block;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 .bm-thumb {
-  height: 42px;
-  border-radius: 4px;
+  height: 58px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #f1f5f9;
 }
 
-.bm-thumb.topo { background: linear-gradient(135deg, #a8c090 0%, #688850 100%); }
-.bm-thumb.sat { background: linear-gradient(135deg, #102a18 0%, #2e4a34 100%); }
-.bm-thumb.hyb { background: linear-gradient(135deg, #1b3824 0%, #00B4D8 100%); }
-.bm-thumb.str { background: linear-gradient(135deg, #e0e0e0 0%, #b0c4de 100%); }
-.bm-thumb.osm { background: linear-gradient(135deg, #f4e8c1 0%, #7ec0ee 100%); }
-.bm-thumb.dark { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
-.bm-thumb.gsat { background: linear-gradient(135deg, #0f2027 0%, #203a43 100%); }
-.bm-thumb.ghyb { background: linear-gradient(135deg, #2c3e50 0%, #00B4D8 100%); }
+.bm-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 250ms ease;
+}
+
+.basemap-card:hover .bm-thumb img {
+  transform: scale(1.08);
+}
+
+.bm-thumb.topo { background-image: url('https://www.arcgis.com/sharing/rest/content/items/7dc6cea0b7a34a1996b9e6ff326ad354/info/thumbnail/topo_thumb_b2.jpg'); }
+.bm-thumb.sat { background-image: url('https://www.arcgis.com/sharing/rest/content/items/10df2279f9684e4a9f6a7f08febac2a9/info/thumbnail/thumbnail1584384938644.jpeg'); }
+.bm-thumb.hyb { background-image: url('https://www.arcgis.com/sharing/rest/content/items/5ae9e138a17842688b0b79283a4353f6/info/thumbnail/thumbnail.jpg'); }
+.bm-thumb.str { background-image: url('https://www.arcgis.com/sharing/rest/content/items/de26a3cf4cc9451298ea173c4b324736/info/thumbnail/thumbnail.jpg'); }
+.bm-thumb.osm { background-image: url('https://www.arcgis.com/sharing/rest/content/items/d0959081a28a4176963e6027a468d6ef/info/thumbnail/thumbnail.jpg'); }
+.bm-thumb.dark { background-image: url('https://www.arcgis.com/sharing/rest/content/items/1970c1995b8f44749f4b9d6eac525029/info/thumbnail/thumbnail.jpg'); }
+.bm-thumb.gsat { background-image: url('https://mt1.google.com/vt/lyrs=s&x=5842&y=3652&z=13'); }
+.bm-thumb.ghyb { background-image: url('https://mt1.google.com/vt/lyrs=y&x=5842&y=3652&z=13'); }
 
 /* Dedicated Right-Side Property Details Panel */
 .property-detail-panel {
