@@ -393,6 +393,58 @@ The portal connects directly to the MRSAC live ArcGIS MapServer endpoint:
 
 ---
 
+## Live Deployment on GitHub Pages
+
+The portal is designed as a standalone static web application and is hosted directly on **GitHub Pages**:
+
+- **Live URL**: [https://manthan-raut.github.io/POC--Shahpur/](https://manthan-raut.github.io/POC--Shahpur/)
+
+### How to Enable GitHub Pages for this Repository
+
+1. Open your repository on GitHub: [`https://github.com/manthan-raut/POC--Shahpur`](https://github.com/manthan-raut/POC--Shahpur)
+2. Click **Settings** in the top navigation bar.
+3. In the left sidebar under *Code, planning, and automation*, click **Pages**.
+4. Under **Build and deployment**:
+   - **Source**: Select `Deploy from a branch`.
+   - **Branch**: Select `main` and folder `/ (root)`.
+5. Click **Save**.
+6. GitHub Pages will build and publish your site in 1–2 minutes.
+
+---
+
+## Getting Started & Local Setup
+
+Because the portal is built as a pure client-side web application without build pipelines or Node bundling requirements, you can run it using any local HTTP server.
+
+### Option 1: Python HTTP Server (Recommended)
+
+1. Open PowerShell or Command Prompt in the project root directory:
+   ```powershell
+   cd "e:\Share_Me\MANTHAN BACKUP\Abhijeet Sir 2\Shahapur"
+   ```
+2. Start the Python web server:
+   ```powershell
+   python -m http.server 8080
+   ```
+3. Open your browser and navigate to:
+   ```text
+   http://localhost:8080
+   ```
+
+### Option 2: Node.js `serve` / `http-server`
+
+```powershell
+npx serve -l 8080 .
+# or
+npx http-server -p 8080
+```
+
+### Option 3: VS Code Live Server Extension
+
+1. Open the project folder in **Visual Studio Code**.
+2. Right-click [`index.html`](index.html) and select **Open with Live Server**.
+
+---
 
 ## Default Login Credentials
 

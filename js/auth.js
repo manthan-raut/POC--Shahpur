@@ -32,7 +32,8 @@ function initLogin() {
 
 function checkAuth() {
   const hasSession = sessionStorage.getItem('tax_portal_session');
-  const isLoginPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
+  const path = window.location.pathname;
+  const isLoginPage = path.endsWith('index.html') || path.endsWith('/') || path.endsWith('POC--Shahpur') || path === '';
   
   if (!hasSession && !isLoginPage) {
     // Redirect to login if not authenticated
