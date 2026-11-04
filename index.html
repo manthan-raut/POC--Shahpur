@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ward-wise Tax Collection GIS Portal</title>
-  
+
   <!-- Browser Extension Safety Shield & Third-Party Crash Guard -->
   <script>
-    window.BHK = window.BHK || { install: function(){}, init: function(){}, widget: {} };
+    window.BHK = window.BHK || { install: function () { }, init: function () { }, widget: {} };
     window.buyhatke = window.buyhatke || {};
-    window.addEventListener('error', function(e) {
+    window.addEventListener('error', function (e) {
       if (e.filename && (e.filename.includes('content.ts') || e.filename.includes('affiliate') || e.filename.includes('extension') || e.filename.includes('BHK'))) {
         e.stopImmediatePropagation();
         return true;
@@ -22,10 +23,11 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  
+
   <!-- Icons (Phosphor Icons) -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
+
 <body>
   <!-- Landing View -->
   <main id="landing-view" class="view-active hero-section">
@@ -51,7 +53,7 @@
         </button>
         <h2 class="h2 mb-2">Welcome Back</h2>
         <p class="text-muted mb-6">Enter your credentials to access the portal.</p>
-        
+
         <form id="login-form">
           <div class="input-group">
             <label for="email">Email</label>
@@ -86,4 +88,5 @@
     });
   </script>
 </body>
+
 </html>
