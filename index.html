@@ -15,7 +15,18 @@
         e.stopImmediatePropagation();
         return true;
       }
+      console.error('[Shahapur GIS - Uncaught Error on Landing Page]', {
+        message: e.message,
+        source: e.filename,
+        line: e.lineno,
+        column: e.colno,
+        error: e.error
+      });
     }, true);
+
+    window.addEventListener('unhandledrejection', function (e) {
+      console.error('[Shahapur GIS - Unhandled Promise Rejection on Landing Page]', e.reason);
+    });
   </script>
 
   <!-- CSS -->
@@ -73,19 +84,28 @@
   <script src="js/auth.js"></script>
   <script>
     // Simple view switcher
-    document.getElementById('btn-show-login').addEventListener('click', () => {
-      document.getElementById('landing-view').classList.remove('view-active');
-      document.getElementById('landing-view').classList.add('view-hidden');
-      document.getElementById('login-view').classList.remove('view-hidden');
-      document.getElementById('login-view').classList.add('view-active');
-    });
+    const btnShowLogin = document.getElementById('btn-show-login');
+    const btnBackHome = document.getElementById('btn-back-home');
 
-    document.getElementById('btn-back-home').addEventListener('click', () => {
-      document.getElementById('login-view').classList.remove('view-active');
-      document.getElementById('login-view').classList.add('view-hidden');
-      document.getElementById('landing-view').classList.remove('view-hidden');
-      document.getElementById('landing-view').classList.add('view-active');
-    });
+    if (btnShowLogin) {
+      btnShowLogin.addEventListener('click', () => {
+        console.log('[Shahapur GIS - Index] "Access Portal" clicked, revealing login modal.');
+        document.getElementById('landing-view').classList.remove('view-active');
+        document.getElementById('landing-view').classList.add('view-hidden');
+        document.getElementById('login-view').classList.remove('view-hidden');
+        document.getElementById('login-view').classList.add('view-active');
+      });
+    }
+
+    if (btnBackHome) {
+      btnBackHome.addEventListener('click', () => {
+        console.log('[Shahapur GIS - Index] Back to home clicked, returning to landing hero view.');
+        document.getElementById('login-view').classList.remove('view-active');
+        document.getElementById('login-view').classList.add('view-hidden');
+        document.getElementById('landing-view').classList.remove('view-hidden');
+        document.getElementById('landing-view').classList.add('view-active');
+      });
+    }
   </script>
 </body>
 

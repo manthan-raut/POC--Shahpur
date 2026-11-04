@@ -1,37 +1,30 @@
 // js/export/exportCsv.js
+// exportCSV(rows, title, columns) — RFC 4180 quoting, UTF-8 BOM so Excel shows Marathi correctly
 
-window.exportCSV = function(data, title) {
-  if (!data || data.length === 0) {
+console.log('[Shahapur GIS - Export] Loading exportCsv.js module...');
+
+window.exportCSV = function(rows, title, columns) {
+  if (!rows || rows.length === 0) {
     alert("No data available to export for current filters.");
     return;
   }
-  
-  const headers = ["Property ID", "Owner Name", "Ward No", "Assessed Amount", "Paid Amount", "Pending Amount", "Status", "Last Payment Date"];
-  
-  const rows = data.map(d => [
-    d.propertyId,
-    `"${d.ownerName}"`,
-    d.wardNo,
-    d.assessedAmount,
-    d.paidAmount,
-    d.pendingAmount,
-    d.status,
-    d.lastPaymentDate || "N/A"
-  ]);
-  
-  const csvContent = [
-    headers.join(","),
-    ...rows.map(e => e.join(","))
-  ].join("\n");
-  
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  
-  const link = document.createElement("a");
-  link.setAttribute("href", url);
-  link.setAttribute("download", `${title.replace(/\s+/g, '_')}.csv`);
-  link.style.visibility = 'hidden';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  try {
+    const quote = v => `"${String(v === null || v === undefined ? '' : v).replace(/"/g, '""')}"`;
+    const lines = [
+      columns.map(c => quote(c.label)).join(','),
+      ...rows.map(r => columns.map(c => c.type ? Number(r[c.key] || 0) : quote(r[c.key])).join(','))
+    ];
+    const blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${title.replace(/[^\w]+/g, '_')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('[Shahapur GIS - Export CSV] Failed to generate CSV export:', err);
+    alert("An error occurred while generating the CSV file. Check console for details.");
+  }
 };

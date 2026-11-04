@@ -1,5 +1,7 @@
 // js/map.js
 
+console.log('[Shahapur GIS - Map] Loading map.js module...');
+
 let appView = null;
 let appMap = null;
 let featureGroupLayer = null;
@@ -8,10 +10,13 @@ let highlightGraphicsLayer = null;
 // The MapServer URL
 const MAPSERVER_URL = "https://gsc.mrsac.org.in/webadpgis2/rest/services/test/Test2/MapServer";
 
+// Default basemap shown on load (Esri World Imagery)
+const DEFAULT_BASEMAP = "satellite";
+
 // Predefined Layer Definitions (IDs 0 to 14)
 const LAYER_DEFS = [
   { id: 0, title: "Council Boundary", group: "Boundaries", defaultVisibility: true },
-  { id: 14, title: "Ward Boundary", group: "Boundaries", defaultVisibility: false },
+  { id: 14, title: "Ward Boundary", group: "Boundaries", defaultVisibility: true },
   { id: 11, title: "Landuse", group: "Boundaries", defaultVisibility: false },
   
   { id: 7, title: "Kutcha Road", group: "Roads & Rail", defaultVisibility: false },
@@ -22,7 +27,7 @@ const LAYER_DEFS = [
   { id: 13, title: "Solar Panel", group: "Utilities", defaultVisibility: false },
   { id: 6, title: "High Tension Line", group: "Utilities", defaultVisibility: false },
   
-  { id: 2, title: "Building (Properties)", group: "Structures", defaultVisibility: false },
+  { id: 2, title: "Building (Properties)", group: "Structures", defaultVisibility: true },
   { id: 3, title: "Compound Wall", group: "Structures", defaultVisibility: false },
   { id: 5, title: "Fencing", group: "Structures", defaultVisibility: false },
   { id: 1, title: "Bridge", group: "Structures", defaultVisibility: false },
@@ -33,30 +38,41 @@ const LAYER_DEFS = [
 
 
 function initMap() {
+  console.info('[Shahapur GIS - Map] initMap() called. Requiring Esri AMD modules...');
+  if (typeof require !== 'function') {
+    console.error('[Shahapur GIS - Map] ArcGIS JS API AMD loader (require) is missing! Ensure https://js.arcgis.com/4.29/ is loaded.');
+    return;
+  }
+
   require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/GroupLayer",
     "esri/layers/FeatureLayer",
     "esri/layers/GraphicsLayer",
+    "esri/Graphic",
+    "esri/geometry/Polygon",
+    "esri/geometry/Extent",
     "esri/widgets/Home",
     "esri/widgets/Zoom",
     "esri/widgets/BasemapGallery",
     "esri/widgets/Expand",
     "esri/rest/support/Query"
-  ], (Map, MapView, GroupLayer, FeatureLayer, GraphicsLayer, Home, Zoom, BasemapGallery, Expand, Query) => {
+  ], (Map, MapView, GroupLayer, FeatureLayer, GraphicsLayer, Graphic, Polygon, Extent, Home, Zoom, BasemapGallery, Expand, Query) => {
     
+    console.log('[Shahapur GIS - Map] Esri modules resolved. Creating Map instance with Esri Satellite basemap...');
     window.appMap = new Map({
-      basemap: "topo-vector"
+      basemap: DEFAULT_BASEMAP
     });
     appMap = window.appMap;
 
-    // Real spatial location of MapServer data (WGS84 Lat/Lon)
+    // Real spatial location of Shahapur, Thane (WGS84 Lat/Lon)
+    console.log('[Shahapur GIS - Map] Initializing MapView on #map-mount centered at [73.3265, 19.4538] (Shahapur)...');
     window.appView = new MapView({
       container: "map-mount",
       map: appMap,
-      center: [76.3857, 18.7247],
-      zoom: 14,
+      center: [73.3265, 19.4538],
+      zoom: 14.5,
       ui: {
         components: []
       }
@@ -64,59 +80,229 @@ function initMap() {
 
     appView = window.appView;
 
-    // Create GroupLayer for 14 individual FeatureLayers
+    // Create GroupLayer for Municipal FeatureLayers
+    console.log('[Shahapur GIS - Map] Creating Municipal FeatureLayers GroupLayer with local tagged data & MapServer backup...');
     window.featureGroupLayer = new GroupLayer({
       title: "Municipal Feature Layers",
       visible: true
     });
     featureGroupLayer = window.featureGroupLayer;
 
-    // Instantiate 14 FeatureLayer instances (IDs 0 to 14)
-    LAYER_DEFS.forEach(layerDef => {
-      const flOptions = {
-        url: `${MAPSERVER_URL}/${layerDef.id}`,
-        title: layerDef.title,
-        id: `feature-layer-${layerDef.id}`,
-        visible: layerDef.defaultVisibility,
-        outFields: ["*"],
-        popupEnabled: true
-      };
+    // Index building features in memory for instantaneous O(1) attribute lookup
+    window.BUILDINGS_BY_ID = {};
+    window.BUILDINGS_BY_PROP_KEY = {};
+    if (window.SHAHAPUR_BUILDINGS_DATA && window.SHAHAPUR_BUILDINGS_DATA.features) {
+      window.SHAHAPUR_BUILDINGS_DATA.features.forEach(f => {
+        window.BUILDINGS_BY_ID[f.properties.OBJECTID] = f.properties;
+        const w = String(f.properties.wardNo);
+        (f.properties.matchedProps || []).forEach(p => {
+          window.BUILDINGS_BY_PROP_KEY[`${w}_${p}`] = f.properties;
+        });
+        window.BUILDINGS_BY_PROP_KEY[`${w}_${f.properties.propNo}`] = f.properties;
+      });
+      console.info('[Shahapur GIS - Map] Indexed', Object.keys(window.BUILDINGS_BY_ID).length, 'buildings into window.BUILDINGS_BY_ID.');
+    }
 
-      // Custom Building Symbology matching reference screenshot (Golden/Orange Fill)
-      if (layerDef.id === 2) {
-        flOptions.renderer = {
+    // Helper: Client-side Building Layer from local tagged shapefile + Excel data
+    let localBuildingLayer = null;
+    if (window.SHAHAPUR_BUILDINGS_DATA && window.SHAHAPUR_BUILDINGS_DATA.features) {
+      console.info('[Shahapur GIS - Map] Creating Web Mercator FeatureLayer from', window.SHAHAPUR_BUILDINGS_DATA.features.length, 'tagged Shahapur building polygons...');
+      const buildingGraphics = window.SHAHAPUR_BUILDINGS_DATA.features.map(f => {
+        const rings = (f.geometry_mercator && f.geometry_mercator.coordinates) ? f.geometry_mercator.coordinates : f.geometry.coordinates;
+        return new Graphic({
+          geometry: new Polygon({
+            rings: rings,
+            spatialReference: { wkid: 3857 }
+          }),
+          attributes: {
+            OBJECTID: f.properties.OBJECTID,
+            OBJECTID_1: f.properties.OBJECTID,
+            wardNo: String(f.properties.wardNo),
+            Ward_No: String(f.properties.wardNo),
+            propNo: String(f.properties.propNo),
+            Prop_No: String(f.properties.propNo),
+            propertyNoOld: String(f.properties.propertyNoOld || ''),
+            ownerName: f.properties.ownerName || '',
+            ownerNameMarathi: f.properties.ownerNameMarathi || '',
+            buildingName: f.properties.buildingName || '',
+            address: f.properties.address || '',
+            description: f.properties.description || '',
+            contactNo: f.properties.contactNo || '',
+            totalAssessed: f.properties.totalAssessed || 0,
+            totalPaid: f.properties.totalPaid || 0,
+            totalPending: f.properties.totalPending || 0,
+            status: f.properties.status || 'Pending',
+            unitsCount: f.properties.unitsCount || 1
+          }
+        });
+      });
+
+      localBuildingLayer = new FeatureLayer({
+        id: "feature-layer-2",
+        title: "Building (Properties)",
+        source: buildingGraphics,
+        objectIdField: "OBJECTID",
+        fields: [
+          { name: "OBJECTID", type: "oid" },
+          { name: "OBJECTID_1", type: "integer" },
+          { name: "wardNo", type: "string" },
+          { name: "Ward_No", type: "string" },
+          { name: "propNo", type: "string" },
+          { name: "Prop_No", type: "string" },
+          { name: "propertyNoOld", type: "string" },
+          { name: "ownerName", type: "string" },
+          { name: "ownerNameMarathi", type: "string" },
+          { name: "buildingName", type: "string" },
+          { name: "address", type: "string" },
+          { name: "description", type: "string" },
+          { name: "contactNo", type: "string" },
+          { name: "totalAssessed", type: "double" },
+          { name: "totalPaid", type: "double" },
+          { name: "totalPending", type: "double" },
+          { name: "status", type: "string" },
+          { name: "unitsCount", type: "integer" }
+        ],
+        geometryType: "polygon",
+        spatialReference: { wkid: 3857 },
+        visible: true,
+        popupEnabled: false,
+        renderer: {
           type: "simple",
           symbol: {
             type: "simple-fill",
-            color: [217, 147, 27, 0.88], // Golden-orange fill matching screenshot
+            color: [217, 147, 27, 0.88], // Golden-orange fill matching reference UI
             outline: {
               color: [160, 100, 10, 0.95],
               width: 0.75
             }
           }
-        };
-      }
+        }
+      });
+    }
 
-      // Custom Ward Boundary Symbology matching reference screenshot (Cyan Outline)
-      if (layerDef.id === 14) {
-        flOptions.renderer = {
+    // Helper: Client-side Ward Boundary Layer
+    let localWardLayer = null;
+    if (window.SHAHAPUR_WARDS_DATA && window.SHAHAPUR_WARDS_DATA.features) {
+      console.info('[Shahapur GIS - Map] Creating Web Mercator Ward Boundary FeatureLayer for Wards 1 to 5...');
+      const wardGraphics = window.SHAHAPUR_WARDS_DATA.features.map(f => {
+        const rings = (f.geometry_mercator && f.geometry_mercator.coordinates) ? f.geometry_mercator.coordinates : f.geometry.coordinates;
+        return new Graphic({
+          geometry: new Polygon({
+            rings: rings,
+            spatialReference: { wkid: 3857 }
+          }),
+          attributes: {
+            OBJECTID: f.properties.OBJECTID,
+            Ward_No: String(f.properties.Ward_No),
+            Ward_Name: f.properties.Ward_Name,
+            totalProperties: f.properties.totalProperties,
+            totalAssessed: f.properties.totalAssessed,
+            totalPaid: f.properties.totalPaid,
+            totalPending: f.properties.totalPending
+          }
+        });
+      });
+
+      localWardLayer = new FeatureLayer({
+        id: "feature-layer-14",
+        title: "Ward Boundary",
+        source: wardGraphics,
+        objectIdField: "OBJECTID",
+        fields: [
+          { name: "OBJECTID", type: "oid" },
+          { name: "Ward_No", type: "string" },
+          { name: "Ward_Name", type: "string" },
+          { name: "totalProperties", type: "integer" },
+          { name: "totalAssessed", type: "double" },
+          { name: "totalPaid", type: "double" },
+          { name: "totalPending", type: "double" }
+        ],
+        geometryType: "polygon",
+        spatialReference: { wkid: 3857 },
+        visible: true,
+        renderer: {
           type: "simple",
           symbol: {
             type: "simple-fill",
-            color: [0, 255, 255, 0.05],
+            color: [0, 210, 255, 0.08],
             outline: {
-              color: "#00FFFF",
-              width: 3.5
+              color: "#00b4d8",
+              width: 2.5
             }
           }
+        }
+      });
+    }
+
+    // Helper: Client-side Council Boundary Layer
+    let localCouncilLayer = null;
+    if (window.SHAHAPUR_COUNCIL_DATA && window.SHAHAPUR_COUNCIL_DATA.features) {
+      console.info('[Shahapur GIS - Map] Creating Web Mercator Council Boundary FeatureLayer...');
+      const councilGraphics = window.SHAHAPUR_COUNCIL_DATA.features.map(f => {
+        const rings = (f.geometry_mercator && f.geometry_mercator.coordinates) ? f.geometry_mercator.coordinates : f.geometry.coordinates;
+        return new Graphic({
+          geometry: new Polygon({
+            rings: rings,
+            spatialReference: { wkid: 3857 }
+          }),
+          attributes: f.properties
+        });
+      });
+
+      localCouncilLayer = new FeatureLayer({
+        id: "feature-layer-0",
+        title: "Council Boundary",
+        source: councilGraphics,
+        objectIdField: "OBJECTID",
+        geometryType: "polygon",
+        spatialReference: { wkid: 3857 },
+        visible: true,
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "simple-fill",
+            color: [10, 66, 89, 0.06],
+            outline: {
+              color: "#0A4259",
+              width: 2.5
+            }
+          }
+        }
+      });
+    }
+
+    // Instantiate Layer instances (IDs 0 to 14)
+    LAYER_DEFS.forEach(layerDef => {
+      let fl = null;
+      if (layerDef.id === 2 && localBuildingLayer) {
+        fl = localBuildingLayer;
+      } else if (layerDef.id === 14 && localWardLayer) {
+        fl = localWardLayer;
+      } else if (layerDef.id === 0 && localCouncilLayer) {
+        fl = localCouncilLayer;
+      } else {
+        // Fallback / enrichment layers from MRSAC MapServer
+        const flOptions = {
+          url: `${MAPSERVER_URL}/${layerDef.id}`,
+          title: layerDef.title,
+          id: `feature-layer-${layerDef.id}`,
+          visible: layerDef.defaultVisibility,
+          outFields: ["*"],
+          popupEnabled: true
         };
+        fl = new FeatureLayer(flOptions);
+        // Suppress remote loading errors if MapServer is unreachable
+        if (typeof fl.load === 'function') {
+          fl.load().catch(err => {
+            console.warn(`[Shahapur GIS - Map] MapServer Layer #${layerDef.id} offline (running in local backup mode):`, err.message || err);
+          });
+        }
       }
 
-      const fl = new FeatureLayer(flOptions);
       featureGroupLayer.add(fl);
     });
 
-
+    console.info('[Shahapur GIS - Map] Added', LAYER_DEFS.length, 'operational FeatureLayers to GroupLayer.');
     appMap.add(featureGroupLayer);
 
     // Create GraphicsLayer for ward boundary highlight
@@ -128,34 +314,69 @@ function initMap() {
 
     // After view is ready
     appView.when(() => {
+      console.info('[Shahapur GIS - Map] MapView ready event fired. Mounting UI, tools, and layers...');
       setupMapUI();
       
-      // Auto-fit to real spatial extent of Ward Boundary (Layer 14)
+      // Auto-fit to real spatial extent of Shahapur
       zoomToFullDatasetExtent();
 
       // Initialize Layers (js/layers.js)
-      if (window.initLayers) window.initLayers();
+      if (window.initLayers) {
+        console.log('[Shahapur GIS - Map] Invoking window.initLayers()...');
+        window.initLayers();
+      } else {
+        console.warn('[Shahapur GIS - Map] window.initLayers is not defined.');
+      }
       // Initialize Tools (js/tools.js)
-      if (window.initTools) window.initTools(appView);
+      if (window.initTools) {
+        console.log('[Shahapur GIS - Map] Invoking window.initTools(appView)...');
+        window.initTools(appView);
+      } else {
+        console.warn('[Shahapur GIS - Map] window.initTools is not defined.');
+      }
+    }).catch(err => {
+      console.error('[Shahapur GIS - Map] Error during MapView.when() initialization:', err);
     });
+  }, (requireErr) => {
+    console.error('[Shahapur GIS - Map] RequireJS / Dojo AMD failed to load Map modules:', requireErr);
   });
 }
 
 
 function zoomToFullDatasetExtent() {
-  const wardLayer = window.featureGroupLayer ? window.featureGroupLayer.findLayerById("feature-layer-14") : null;
-  if (wardLayer && typeof wardLayer.queryExtent === 'function') {
-    wardLayer.queryExtent().then(res => {
-      if (res && res.extent && window.appView) {
-        window.appView.goTo(res.extent.expand(1.15));
-      } else if (window.appView) {
-        window.appView.goTo({ center: [76.3857, 18.7247], zoom: 14 });
-      }
-    }).catch(() => {
-      if (window.appView) window.appView.goTo({ center: [76.3857, 18.7247], zoom: 14 });
+  console.log('[Shahapur GIS - Map] zoomToFullDatasetExtent(): Zooming to Shahapur municipal boundary...');
+  if (window.SHAHAPUR_SUMMARY_STATS && window.SHAHAPUR_SUMMARY_STATS.extent_mercator && window.appView) {
+    const ext = window.SHAHAPUR_SUMMARY_STATS.extent_mercator;
+    require(["esri/geometry/Extent"], (Extent) => {
+      const fullExt = new Extent({
+        xmin: ext[0],
+        ymin: ext[1],
+        xmax: ext[2],
+        ymax: ext[3],
+        spatialReference: { wkid: 3857 }
+      });
+      window.appView.goTo(fullExt.expand(1.15));
     });
-  } else if (window.appView) {
-    window.appView.goTo({ center: [76.3857, 18.7247], zoom: 14 });
+    return;
+  }
+  
+  if (window.SHAHAPUR_SUMMARY_STATS && window.SHAHAPUR_SUMMARY_STATS.extent && window.appView) {
+    const ext = window.SHAHAPUR_SUMMARY_STATS.extent; // [minX, minY, maxX, maxY]
+    require(["esri/geometry/Extent"], (Extent) => {
+      const fullExt = new Extent({
+        xmin: ext[0],
+        ymin: ext[1],
+        xmax: ext[2],
+        ymax: ext[3],
+        spatialReference: { wkid: 4326 }
+      });
+      window.appView.goTo(fullExt.expand(1.18));
+    });
+    return;
+  }
+  
+  if (window.appView) {
+    window.appView.goTo({ center: [73.3265, 19.4538], zoom: 14.5 });
   }
 }
 
@@ -233,13 +454,13 @@ function setupMapUI() {
       <button class="btn-icon" id="btn-close-basemap"><i class="ph ph-x"></i></button>
     </div>
     <div class="basemap-grid">
-      <div class="basemap-card active" data-bm="topo-vector" title="Esri Topographic Map">
+      <div class="basemap-card" data-bm="topo-vector" title="Esri Topographic Map">
         <div class="bm-thumb topo">
           <img src="https://www.arcgis.com/sharing/rest/content/items/7dc6cea0b7a34a1996b9e6ff326ad354/info/thumbnail/topo_thumb_b2.jpg" alt="Topographic" loading="lazy" onerror="this.style.opacity='0'">
         </div>
         <span>Topographic</span>
       </div>
-      <div class="basemap-card" data-bm="satellite" title="Esri Satellite Imagery">
+      <div class="basemap-card active" data-bm="satellite" title="Esri Satellite Imagery">
         <div class="bm-thumb sat">
           <img src="https://www.arcgis.com/sharing/rest/content/items/10df2279f9684e4a9f6a7f08febac2a9/info/thumbnail/thumbnail1584384938644.jpeg" alt="Esri Satellite" loading="lazy" onerror="this.style.opacity='0'">
         </div>
@@ -299,7 +520,8 @@ function setupMapUI() {
   mapMount.appendChild(propDetailPanel);
 
   propDetailPanel.querySelector('#btn-close-prop-detail').addEventListener('click', () => {
-    propDetailPanel.classList.add('hidden');
+    if (window.resetSidePanel) window.resetSidePanel();   // hides panel + clears building highlight
+    else propDetailPanel.classList.add('hidden');
   });
 
   // Custom coordinate readout
@@ -354,16 +576,11 @@ function setupMapUI() {
           <label class="query-label">Village / Ward</label>
           <select id="ward-select" class="query-select">
             <option value="All">Select Ward / Village</option>
-            <option value="1">Ward 1</option>
-            <option value="2">Ward 2</option>
-            <option value="3">Ward 3</option>
-            <option value="4">Ward 4</option>
-            <option value="5">Ward 5</option>
-            <option value="6">Ward 6</option>
-            <option value="7">Ward 7</option>
-            <option value="8">Ward 8</option>
-            <option value="9">Ward 9</option>
-            <option value="10">Ward 10</option>
+            <option value="1">Ward 1 (Prabhag 1)</option>
+            <option value="2">Ward 2 (Prabhag 2)</option>
+            <option value="3">Ward 3 (Prabhag 3)</option>
+            <option value="4">Ward 4 (Prabhag 4)</option>
+            <option value="5">Ward 5 (Prabhag 5)</option>
           </select>
         </div>
 
@@ -380,7 +597,7 @@ function setupMapUI() {
           <i class="ph ph-info"></i>
           <div>
             <strong>Spatial Query Filter</strong><br>
-            Showing municipal assets for <strong>Shahapur, Thane</strong>. Select a Ward to zoom to geometries.
+            Showing municipal assets for <strong>Shahapur, Thane</strong>. Select a Ward to show only its properties.
           </div>
         </div>
       </div>
@@ -465,6 +682,7 @@ function setupMapUI() {
       card.classList.add('active');
 
       const bmType = card.getAttribute('data-bm');
+      console.info('[Shahapur GIS - Map] User switched basemap to:', bmType);
 
       if (bmType === 'google-satellite') {
         if (window.googleSatelliteLayer) window.googleSatelliteLayer.visible = true;
@@ -491,7 +709,10 @@ function setupMapUI() {
     sBox.classList.toggle('hidden');
     document.getElementById('tool-search').classList.toggle('active');
     if (!sBox.classList.contains('hidden')) {
+      console.log('[Shahapur GIS - Map] Opened property search box on map.');
       document.getElementById('map-search-input').focus();
+    } else {
+      console.log('[Shahapur GIS - Map] Closed property search box on map.');
     }
   });
 
@@ -503,14 +724,17 @@ function setupMapUI() {
 
   // Basic Tool wiring
   document.getElementById('tool-zoom-in').addEventListener('click', () => {
+    console.log('[Shahapur GIS - Map] Zoom In clicked. Current zoom:', appView.zoom);
     appView.goTo({ zoom: appView.zoom + 1 });
   });
   document.getElementById('tool-zoom-out').addEventListener('click', () => {
+    console.log('[Shahapur GIS - Map] Zoom Out clicked. Current zoom:', appView.zoom);
     appView.goTo({ zoom: appView.zoom - 1 });
   });
   
   // Home tool resets to dataset extent
   document.getElementById('tool-home').addEventListener('click', () => {
+    console.log('[Shahapur GIS - Map] Home extent button clicked.');
     zoomToFullDatasetExtent();
   });
 }
@@ -519,12 +743,14 @@ function setupMapUI() {
 let mapInitialized = false;
 window.addEventListener('hashchange', () => {
   if (window.location.hash.includes('#/map') && !mapInitialized) {
+    console.log('[Shahapur GIS - Map] Route #/map detected on hashchange, initializing map...');
     mapInitialized = true;
     initMap();
   }
 });
 // Check if starting on map
 if (window.location.hash.includes('#/map') && !mapInitialized) {
+  console.log('[Shahapur GIS - Map] Initial page load on route #/map, initializing map...');
   mapInitialized = true;
   initMap();
 }

@@ -1,0 +1,4224 @@
+{
+  "warnings": [
+    "Ward 1 OBJECTID 192: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 1 OBJECTID 195: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Tag '88 TO 15' uses 'TO'; linked to the two named properties only.",
+    "Tag '31 TO 30' uses 'TO'; linked to the two named properties only.",
+    "Tag '199 TO 121' uses 'TO'; linked to the two named properties only.",
+    "Ward 1 OBJECTID 669: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 1 OBJECTID 737: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 1 OBJECTID 828: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 1 OBJECTID 846: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 2 OBJECTID 165: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 2 OBJECTID 206: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 2 OBJECTID 406: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 2 OBJECTID 409: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 10: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 24: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 31: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 120: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 330: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 333: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 3 OBJECTID 455: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 4 OBJECTID 136: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 4 OBJECTID 137: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 4 OBJECTID 153: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Ward 4 OBJECTID 326: newpropno is cut at 254 chars; remaining partitions are inferred.",
+    "Footprint tag W3-752 has no row in the Excel register."
+  ],
+  "photosWithoutUnit": [
+    "1-1-1-A.jpg",
+    "1-1-2-A.jpg",
+    "1-109-4-A.jpg",
+    "1-111-5-A.jpg",
+    "1-203-43-A.jpg",
+    "1-223-1-A.jpg",
+    "1-247-53-A.jpg",
+    "1-247-71-A.jpg",
+    "1-247-72-A.jpg",
+    "1-247-79-A.jpg",
+    "1-248-1-A.jpg",
+    "1-41-84-A.jpg",
+    "1-46-8-A.jpg",
+    "1-499-A.jpg",
+    "1-574-17-A.jpg",
+    "1-574-17-B.jpg",
+    "2-242-3-A.jpg",
+    "2-317-1-A.jpg",
+    "2-580-16-A.jpg",
+    "2-588-15-A.jpg",
+    "3-157-30 .jpg",
+    "3-157-30-B.jpg",
+    "3-4-14-A.jpg",
+    "3-4-14-B.jpg",
+    "3-688-1-A.jpg",
+    "3-688-2-A.jpg",
+    "3-688-3-A.jpg",
+    "5-291-1-A.jpg",
+    "5-291-2-A.jpg"
+  ],
+  "plansWithoutUnit": [
+    "1-136-13.png",
+    "2-551-69.png"
+  ],
+  "unitsWithoutPhoto": 786,
+  "unitsWithoutPlan": 9,
+  "unitLinkStats": {
+    "tagged": 5085,
+    "inferred": 613,
+    "untagged": 2987,
+    "parent": 17
+  },
+  "footprintsWithoutUnits": [
+    {
+      "ward": 2,
+      "dbfObjectId": "539",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "543",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "544",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "548",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "549",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "553",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "554",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "557",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "559",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "561",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "562",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "563",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "571",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "572",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "573",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "588",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "589",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "590",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "591",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "592",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "593",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "594",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "597",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "598",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "600",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "601",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "604",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "605",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "607",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "609",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "610",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "611",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "612",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "614",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "617",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "618",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "620",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "621",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "622",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "623",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "624",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "631",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "637",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "640",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "642",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "645",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "648",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "650",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "653",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "654",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "661",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "663",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "664",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "665",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "669",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "670",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "672",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "674",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "682",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "684",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "692",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "693",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "694",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "695",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "696",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "697",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "699",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "700",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "701",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "705",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "706",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "713",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "714",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "715",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "716",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "717",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "719",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "720",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "722",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "724",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "726",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "727",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "728",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "729",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "730",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "732",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "736",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "737",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "738",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "741",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "743",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "744",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "745",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "751",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "752",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "753",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "758",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "761",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "762",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "763",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "764",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "768",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "781",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "782",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "783",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "787",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "790",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "798",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "799",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "800",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "801",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "806",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "809",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "810",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "812",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "813",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "814",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "815",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "816",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "833",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "834",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "836",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "839",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "840",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "841",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "844",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "845",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "847",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "848",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "849",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "851",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "853",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "855",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "860",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "863",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "868",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "872",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "873",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "875",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "879",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "882",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "887",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "890",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "894",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "895",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "898",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "901",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "906",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "911",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "912",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "913",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "917",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "918",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "920",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "924",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "927",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "929",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "930",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "931",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "932",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "934",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "935",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "936",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "951",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "984",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "985",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "986",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "990",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "992",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "993",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "996",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "997",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "998",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "999",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1000",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1001",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1002",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1008",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1014",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1015",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1018",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1019",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1024",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1028",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1034",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1035",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1036",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1037",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1039",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1042",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1043",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1044",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1045",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1046",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1047",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1048",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1051",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1053",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1058",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1060",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1061",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1065",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1066",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1070",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1075",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1081",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1084",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1086",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1087",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1091",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1094",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1097",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1099",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1101",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1103",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1113",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1114",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1117",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1118",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1119",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1122",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1123",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1124",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1125",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1126",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1129",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1133",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1142",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1143",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1146",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1147",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1148",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1149",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1152",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1156",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1160",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1161",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1163",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1164",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1167",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1171",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1173",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1175",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1176",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1178",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1183",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1185",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1190",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1191",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1192",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1195",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1197",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1198",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1205",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1206",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1211",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1218",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1220",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1221",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1224",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1225",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1226",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1227",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1229",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1234",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1238",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1240",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1243",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1256",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1261",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1266",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1269",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1271",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1272",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1273",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1274",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1282",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1283",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1284",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1296",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1299",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1318",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1322",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1324",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1326",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1332",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1333",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1334",
+      "tag": "0"
+    },
+    {
+      "ward": 2,
+      "dbfObjectId": "1338",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "210",
+      "tag": "752"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "459",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "462",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "467",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "472",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "473",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "481",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "488",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "489",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "491",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "492",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "498",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "500",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "503",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "504",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "505",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "506",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "508",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "512",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "515",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "521",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "522",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "523",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "524",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "527",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "532",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "537",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "539",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "540",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "541",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "542",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "543",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "545",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "548",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "549",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "551",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "552",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "558",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "559",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "561",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "564",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "569",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "571",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "575",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "581",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "582",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "583",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "584",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "586",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "588",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "591",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "596",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "597",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "598",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "599",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "603",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "606",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "608",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "609",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "615",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "617",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "618",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "622",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "623",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "626",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "627",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "629",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "632",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "636",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "643",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "644",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "647",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "651",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "654",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "659",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "660",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "661",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "663",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "668",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "669",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "673",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "678",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "681",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "684",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "686",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "691",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "696",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "697",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "700",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "710",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "721",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "723",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "726",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "727",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "729",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "730",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "735",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "738",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "741",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "744",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "752",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "753",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "754",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "756",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "763",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "764",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "766",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "767",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "770",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "771",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "776",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "782",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "783",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "786",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "790",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "792",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "795",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "797",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "802",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "804",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "813",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "816",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "818",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "820",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "821",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "831",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "839",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "840",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "841",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "844",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "849",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "851",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "875",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "876",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "882",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "889",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "890",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "891",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "892",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "894",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "898",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "901",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "906",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "909",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "916",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "917",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "918",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "921",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "926",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "929",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "930",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "937",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "940",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "941",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "942",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "948",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "951",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "955",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "957",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "959",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "960",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "963",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "965",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "968",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "972",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "973",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "975",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "979",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "980",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "986",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "988",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "990",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "991",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "992",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1001",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1003",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1005",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1008",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1009",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1010",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1011",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1014",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1018",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1020",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1022",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1026",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1031",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1032",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1033",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1034",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1039",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1040",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1041",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1042",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1044",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1045",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1046",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1051",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1058",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1059",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1062",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1070",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1071",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1083",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1092",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1094",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1100",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1108",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1112",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1115",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1117",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1118",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1119",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1130",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1131",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1132",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1143",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1159",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1160",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1161",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1163",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1165",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1166",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1167",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1169",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1170",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1171",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1172",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1174",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1175",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1176",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1177",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1178",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1182",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1183",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1185",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1186",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1187",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1188",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1189",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1192",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1193",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1194",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1195",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1197",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1202",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1204",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1207",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1215",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1220",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1223",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1225",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1232",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1235",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1237",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1240",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1243",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1244",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1247",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1248",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1250",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1256",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1257",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1259",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1260",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1261",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1262",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1263",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1264",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1265",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1266",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1267",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1268",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1269",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1270",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1271",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1272",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1273",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1274",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1275",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1276",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1277",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1278",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1279",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1280",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1281",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1282",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1283",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1284",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1285",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1286",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1287",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1288",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1289",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1290",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1291",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1292",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1293",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1294",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1295",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1296",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1297",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1298",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1299",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1300",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1301",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1302",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1303",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1304",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1305",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1306",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1307",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1308",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1309",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1310",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1311",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1312",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1313",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1314",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1315",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1316",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1317",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1318",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1319",
+      "tag": "0"
+    },
+    {
+      "ward": 3,
+      "dbfObjectId": "1320",
+      "tag": "0"
+    }
+  ],
+  "propertiesWithoutFootprint": [
+    "W1-103",
+    "W1-117",
+    "W1-119",
+    "W1-120",
+    "W1-198",
+    "W1-223",
+    "W1-227",
+    "W1-319",
+    "W1-385",
+    "W1-403",
+    "W1-413",
+    "W1-535",
+    "W1-541",
+    "W1-542",
+    "W1-543",
+    "W1-545",
+    "W1-546",
+    "W1-550",
+    "W1-57",
+    "W1-60",
+    "W1-646",
+    "W1-647",
+    "W1-657",
+    "W1-90",
+    "W1-91",
+    "W1-92",
+    "W2-1",
+    "W2-10",
+    "W2-100",
+    "W2-101",
+    "W2-103",
+    "W2-104",
+    "W2-105",
+    "W2-106",
+    "W2-108",
+    "W2-109",
+    "W2-110",
+    "W2-111",
+    "W2-113",
+    "W2-115",
+    "W2-116",
+    "W2-117",
+    "W2-118",
+    "W2-119",
+    "W2-12",
+    "W2-121",
+    "W2-122",
+    "W2-123",
+    "W2-124",
+    "W2-125",
+    "W2-128",
+    "W2-13",
+    "W2-131",
+    "W2-132",
+    "W2-133",
+    "W2-134",
+    "W2-135",
+    "W2-136",
+    "W2-137",
+    "W2-138",
+    "W2-139",
+    "W2-14",
+    "W2-141",
+    "W2-142",
+    "W2-143",
+    "W2-144",
+    "W2-146",
+    "W2-147",
+    "W2-148",
+    "W2-149",
+    "W2-150",
+    "W2-151",
+    "W2-153",
+    "W2-154",
+    "W2-155",
+    "W2-157",
+    "W2-158",
+    "W2-159",
+    "W2-160",
+    "W2-161",
+    "W2-162",
+    "W2-163",
+    "W2-164",
+    "W2-165",
+    "W2-167",
+    "W2-168",
+    "W2-169",
+    "W2-17",
+    "W2-170",
+    "W2-171",
+    "W2-174",
+    "W2-175",
+    "W2-176",
+    "W2-177",
+    "W2-178",
+    "W2-179",
+    "W2-181",
+    "W2-182",
+    "W2-183",
+    "W2-189",
+    "W2-19",
+    "W2-190",
+    "W2-194",
+    "W2-2",
+    "W2-203",
+    "W2-204",
+    "W2-205",
+    "W2-206",
+    "W2-207",
+    "W2-208",
+    "W2-209",
+    "W2-210",
+    "W2-211",
+    "W2-212",
+    "W2-213",
+    "W2-214",
+    "W2-215",
+    "W2-216",
+    "W2-222",
+    "W2-223",
+    "W2-225",
+    "W2-232",
+    "W2-235",
+    "W2-237",
+    "W2-238",
+    "W2-239",
+    "W2-240",
+    "W2-241",
+    "W2-242",
+    "W2-244",
+    "W2-245",
+    "W2-246",
+    "W2-247",
+    "W2-25",
+    "W2-254",
+    "W2-255",
+    "W2-256",
+    "W2-257",
+    "W2-258",
+    "W2-259",
+    "W2-260",
+    "W2-261",
+    "W2-262",
+    "W2-263",
+    "W2-264",
+    "W2-267",
+    "W2-268",
+    "W2-269",
+    "W2-27",
+    "W2-272",
+    "W2-273",
+    "W2-274",
+    "W2-275",
+    "W2-276",
+    "W2-277",
+    "W2-278",
+    "W2-279",
+    "W2-28",
+    "W2-280",
+    "W2-281",
+    "W2-282",
+    "W2-283",
+    "W2-284",
+    "W2-285",
+    "W2-286",
+    "W2-287",
+    "W2-288",
+    "W2-289",
+    "W2-29",
+    "W2-291",
+    "W2-292",
+    "W2-293",
+    "W2-294",
+    "W2-295",
+    "W2-296",
+    "W2-297",
+    "W2-298",
+    "W2-3",
+    "W2-302",
+    "W2-303",
+    "W2-304",
+    "W2-307",
+    "W2-308",
+    "W2-309",
+    "W2-31",
+    "W2-310",
+    "W2-311",
+    "W2-312",
+    "W2-313",
+    "W2-314",
+    "W2-315",
+    "W2-316",
+    "W2-32",
+    "W2-324",
+    "W2-325",
+    "W2-328",
+    "W2-329",
+    "W2-33",
+    "W2-331",
+    "W2-332",
+    "W2-333",
+    "W2-334",
+    "W2-335",
+    "W2-336",
+    "W2-337",
+    "W2-338",
+    "W2-339",
+    "W2-340",
+    "W2-341",
+    "W2-342",
+    "W2-343",
+    "W2-344",
+    "W2-345",
+    "W2-346",
+    "W2-347",
+    "W2-348",
+    "W2-352",
+    "W2-353",
+    "W2-354",
+    "W2-357",
+    "W2-358",
+    "W2-359",
+    "W2-36",
+    "W2-360",
+    "W2-364",
+    "W2-365",
+    "W2-366",
+    "W2-367",
+    "W2-368",
+    "W2-369",
+    "W2-37",
+    "W2-370",
+    "W2-372",
+    "W2-375",
+    "W2-376",
+    "W2-377",
+    "W2-378",
+    "W2-379",
+    "W2-38",
+    "W2-380",
+    "W2-381",
+    "W2-383",
+    "W2-384",
+    "W2-386",
+    "W2-387",
+    "W2-39",
+    "W2-392",
+    "W2-393",
+    "W2-398",
+    "W2-4",
+    "W2-400",
+    "W2-401",
+    "W2-402",
+    "W2-403",
+    "W2-404",
+    "W2-407",
+    "W2-408",
+    "W2-409",
+    "W2-411",
+    "W2-412",
+    "W2-413",
+    "W2-414",
+    "W2-415",
+    "W2-416",
+    "W2-417",
+    "W2-418",
+    "W2-426",
+    "W2-432",
+    "W2-433",
+    "W2-434",
+    "W2-435",
+    "W2-437",
+    "W2-438",
+    "W2-439",
+    "W2-440",
+    "W2-441",
+    "W2-443",
+    "W2-444",
+    "W2-445",
+    "W2-449",
+    "W2-450",
+    "W2-451",
+    "W2-452",
+    "W2-455",
+    "W2-456",
+    "W2-457",
+    "W2-458",
+    "W2-459",
+    "W2-461",
+    "W2-462",
+    "W2-465",
+    "W2-475",
+    "W2-476",
+    "W2-477",
+    "W2-478",
+    "W2-479",
+    "W2-480",
+    "W2-481",
+    "W2-482",
+    "W2-483",
+    "W2-485",
+    "W2-487",
+    "W2-488",
+    "W2-489",
+    "W2-493",
+    "W2-494",
+    "W2-495",
+    "W2-496",
+    "W2-497",
+    "W2-498",
+    "W2-499",
+    "W2-5",
+    "W2-500",
+    "W2-501",
+    "W2-503",
+    "W2-505",
+    "W2-507",
+    "W2-508",
+    "W2-512",
+    "W2-513",
+    "W2-514",
+    "W2-515",
+    "W2-517",
+    "W2-521",
+    "W2-523",
+    "W2-524",
+    "W2-526",
+    "W2-527",
+    "W2-529",
+    "W2-530",
+    "W2-531",
+    "W2-532",
+    "W2-533",
+    "W2-534",
+    "W2-535",
+    "W2-536",
+    "W2-537",
+    "W2-538",
+    "W2-539",
+    "W2-54",
+    "W2-540",
+    "W2-541",
+    "W2-542",
+    "W2-543",
+    "W2-544",
+    "W2-545",
+    "W2-546",
+    "W2-55",
+    "W2-550",
+    "W2-587",
+    "W2-588",
+    "W2-589",
+    "W2-59",
+    "W2-590",
+    "W2-60",
+    "W2-606",
+    "W2-61",
+    "W2-611",
+    "W2-612",
+    "W2-613",
+    "W2-615",
+    "W2-616",
+    "W2-617",
+    "W2-618",
+    "W2-62",
+    "W2-620",
+    "W2-622",
+    "W2-623",
+    "W2-626",
+    "W2-63",
+    "W2-630",
+    "W2-631",
+    "W2-632",
+    "W2-634",
+    "W2-639",
+    "W2-64",
+    "W2-642",
+    "W2-647",
+    "W2-65",
+    "W2-650",
+    "W2-651",
+    "W2-652",
+    "W2-655",
+    "W2-657",
+    "W2-658",
+    "W2-66",
+    "W2-663",
+    "W2-664",
+    "W2-665",
+    "W2-666",
+    "W2-667",
+    "W2-668",
+    "W2-669",
+    "W2-670",
+    "W2-671",
+    "W2-674",
+    "W2-675",
+    "W2-678",
+    "W2-679",
+    "W2-681",
+    "W2-682",
+    "W2-683",
+    "W2-689",
+    "W2-690",
+    "W2-691",
+    "W2-695",
+    "W2-696",
+    "W2-697",
+    "W2-698",
+    "W2-699",
+    "W2-702",
+    "W2-703",
+    "W2-704",
+    "W2-708",
+    "W2-709",
+    "W2-71",
+    "W2-710",
+    "W2-712",
+    "W2-713",
+    "W2-714",
+    "W2-715",
+    "W2-716",
+    "W2-719",
+    "W2-720",
+    "W2-721",
+    "W2-722",
+    "W2-724",
+    "W2-728",
+    "W2-729",
+    "W2-73",
+    "W2-731",
+    "W2-732",
+    "W2-74",
+    "W2-75",
+    "W2-76",
+    "W2-78",
+    "W2-79",
+    "W2-80",
+    "W2-81",
+    "W2-82",
+    "W2-84",
+    "W2-85",
+    "W2-89",
+    "W2-9",
+    "W2-92",
+    "W2-93",
+    "W2-94",
+    "W2-95",
+    "W2-97",
+    "W3-1",
+    "W3-10",
+    "W3-100",
+    "W3-101",
+    "W3-103",
+    "W3-104",
+    "W3-106",
+    "W3-107",
+    "W3-108",
+    "W3-109",
+    "W3-11",
+    "W3-110",
+    "W3-111",
+    "W3-112",
+    "W3-113",
+    "W3-114",
+    "W3-115",
+    "W3-116",
+    "W3-117",
+    "W3-12",
+    "W3-120",
+    "W3-121",
+    "W3-122",
+    "W3-123",
+    "W3-124",
+    "W3-125",
+    "W3-126",
+    "W3-128",
+    "W3-129",
+    "W3-131",
+    "W3-134",
+    "W3-137",
+    "W3-138",
+    "W3-139",
+    "W3-141",
+    "W3-143",
+    "W3-144",
+    "W3-147",
+    "W3-148",
+    "W3-149",
+    "W3-15",
+    "W3-150",
+    "W3-151",
+    "W3-16",
+    "W3-160",
+    "W3-161",
+    "W3-162",
+    "W3-163",
+    "W3-164",
+    "W3-165",
+    "W3-166",
+    "W3-167",
+    "W3-168",
+    "W3-169",
+    "W3-17",
+    "W3-170",
+    "W3-171",
+    "W3-172",
+    "W3-173",
+    "W3-174",
+    "W3-175",
+    "W3-177",
+    "W3-18",
+    "W3-180",
+    "W3-181",
+    "W3-183",
+    "W3-184",
+    "W3-185",
+    "W3-186",
+    "W3-187",
+    "W3-188",
+    "W3-189",
+    "W3-19",
+    "W3-190",
+    "W3-191",
+    "W3-192",
+    "W3-193",
+    "W3-194",
+    "W3-195",
+    "W3-196",
+    "W3-197",
+    "W3-198",
+    "W3-2",
+    "W3-20",
+    "W3-202",
+    "W3-203",
+    "W3-204",
+    "W3-206",
+    "W3-208",
+    "W3-209",
+    "W3-21",
+    "W3-210",
+    "W3-211",
+    "W3-212",
+    "W3-213",
+    "W3-214",
+    "W3-215",
+    "W3-216",
+    "W3-217",
+    "W3-218",
+    "W3-219",
+    "W3-221",
+    "W3-222",
+    "W3-224",
+    "W3-225",
+    "W3-226",
+    "W3-227",
+    "W3-228",
+    "W3-230",
+    "W3-232",
+    "W3-233",
+    "W3-234",
+    "W3-235",
+    "W3-236",
+    "W3-237",
+    "W3-238",
+    "W3-240",
+    "W3-241",
+    "W3-242",
+    "W3-249",
+    "W3-25",
+    "W3-250",
+    "W3-251",
+    "W3-256",
+    "W3-257",
+    "W3-258",
+    "W3-259",
+    "W3-260",
+    "W3-261",
+    "W3-262",
+    "W3-263",
+    "W3-264",
+    "W3-265",
+    "W3-266",
+    "W3-267",
+    "W3-268",
+    "W3-269",
+    "W3-27",
+    "W3-270",
+    "W3-271",
+    "W3-272",
+    "W3-273",
+    "W3-274",
+    "W3-275",
+    "W3-277",
+    "W3-278",
+    "W3-28",
+    "W3-280",
+    "W3-281",
+    "W3-282",
+    "W3-283",
+    "W3-284",
+    "W3-288",
+    "W3-29",
+    "W3-291",
+    "W3-292",
+    "W3-294",
+    "W3-3",
+    "W3-30",
+    "W3-31",
+    "W3-32",
+    "W3-33",
+    "W3-34",
+    "W3-364",
+    "W3-37",
+    "W3-373",
+    "W3-376",
+    "W3-377",
+    "W3-378",
+    "W3-379",
+    "W3-380",
+    "W3-381",
+    "W3-382",
+    "W3-383",
+    "W3-384",
+    "W3-385",
+    "W3-386",
+    "W3-387",
+    "W3-388",
+    "W3-389",
+    "W3-39",
+    "W3-390",
+    "W3-391",
+    "W3-392",
+    "W3-393",
+    "W3-394",
+    "W3-395",
+    "W3-396",
+    "W3-397",
+    "W3-398",
+    "W3-399",
+    "W3-400",
+    "W3-401",
+    "W3-402",
+    "W3-403",
+    "W3-404",
+    "W3-405",
+    "W3-406",
+    "W3-407",
+    "W3-408",
+    "W3-409",
+    "W3-41",
+    "W3-410",
+    "W3-411",
+    "W3-412",
+    "W3-413",
+    "W3-414",
+    "W3-415",
+    "W3-416",
+    "W3-417",
+    "W3-418",
+    "W3-419",
+    "W3-42",
+    "W3-420",
+    "W3-421",
+    "W3-422",
+    "W3-423",
+    "W3-424",
+    "W3-425",
+    "W3-426",
+    "W3-427",
+    "W3-428",
+    "W3-429",
+    "W3-43",
+    "W3-430",
+    "W3-431",
+    "W3-432",
+    "W3-433",
+    "W3-434",
+    "W3-435",
+    "W3-436",
+    "W3-437",
+    "W3-438",
+    "W3-439",
+    "W3-44",
+    "W3-440",
+    "W3-441",
+    "W3-442",
+    "W3-443",
+    "W3-444",
+    "W3-445",
+    "W3-446",
+    "W3-447",
+    "W3-448",
+    "W3-449",
+    "W3-450",
+    "W3-451",
+    "W3-452",
+    "W3-453",
+    "W3-454",
+    "W3-455",
+    "W3-456",
+    "W3-458",
+    "W3-459",
+    "W3-46",
+    "W3-460",
+    "W3-461",
+    "W3-462",
+    "W3-463",
+    "W3-464",
+    "W3-465",
+    "W3-467",
+    "W3-468",
+    "W3-469",
+    "W3-47",
+    "W3-470",
+    "W3-471",
+    "W3-473",
+    "W3-474",
+    "W3-475",
+    "W3-476",
+    "W3-477",
+    "W3-479",
+    "W3-48",
+    "W3-480",
+    "W3-481",
+    "W3-482",
+    "W3-483",
+    "W3-484",
+    "W3-485",
+    "W3-486",
+    "W3-487",
+    "W3-488",
+    "W3-489",
+    "W3-49",
+    "W3-490",
+    "W3-491",
+    "W3-492",
+    "W3-493",
+    "W3-494",
+    "W3-495",
+    "W3-496",
+    "W3-497",
+    "W3-498",
+    "W3-499",
+    "W3-50",
+    "W3-500",
+    "W3-502",
+    "W3-503",
+    "W3-504",
+    "W3-505",
+    "W3-506",
+    "W3-509",
+    "W3-51",
+    "W3-510",
+    "W3-511",
+    "W3-512",
+    "W3-514",
+    "W3-515",
+    "W3-516",
+    "W3-517",
+    "W3-518",
+    "W3-519",
+    "W3-52",
+    "W3-520",
+    "W3-521",
+    "W3-522",
+    "W3-523",
+    "W3-524",
+    "W3-525",
+    "W3-526",
+    "W3-527",
+    "W3-528",
+    "W3-529",
+    "W3-53",
+    "W3-530",
+    "W3-531",
+    "W3-532",
+    "W3-533",
+    "W3-534",
+    "W3-535",
+    "W3-536",
+    "W3-54",
+    "W3-543",
+    "W3-544",
+    "W3-545",
+    "W3-546",
+    "W3-547",
+    "W3-55",
+    "W3-550",
+    "W3-551",
+    "W3-552",
+    "W3-553",
+    "W3-554",
+    "W3-555",
+    "W3-556",
+    "W3-558",
+    "W3-56",
+    "W3-563",
+    "W3-564",
+    "W3-565",
+    "W3-566",
+    "W3-567",
+    "W3-569",
+    "W3-57",
+    "W3-572",
+    "W3-573",
+    "W3-574",
+    "W3-578",
+    "W3-582",
+    "W3-583",
+    "W3-584",
+    "W3-585",
+    "W3-587",
+    "W3-588",
+    "W3-589",
+    "W3-59",
+    "W3-591",
+    "W3-592",
+    "W3-593",
+    "W3-594",
+    "W3-595",
+    "W3-596",
+    "W3-597",
+    "W3-598",
+    "W3-6",
+    "W3-60",
+    "W3-600",
+    "W3-601",
+    "W3-602",
+    "W3-604",
+    "W3-605",
+    "W3-607",
+    "W3-608",
+    "W3-61",
+    "W3-610",
+    "W3-611",
+    "W3-612",
+    "W3-613",
+    "W3-617",
+    "W3-618",
+    "W3-619",
+    "W3-620",
+    "W3-621",
+    "W3-624",
+    "W3-625",
+    "W3-627",
+    "W3-628",
+    "W3-629",
+    "W3-63",
+    "W3-630",
+    "W3-631",
+    "W3-633",
+    "W3-638",
+    "W3-639",
+    "W3-64",
+    "W3-643",
+    "W3-644",
+    "W3-645",
+    "W3-648",
+    "W3-649",
+    "W3-65",
+    "W3-650",
+    "W3-651",
+    "W3-652",
+    "W3-653",
+    "W3-654",
+    "W3-655",
+    "W3-657",
+    "W3-658",
+    "W3-66",
+    "W3-660",
+    "W3-661",
+    "W3-662",
+    "W3-664",
+    "W3-665",
+    "W3-666",
+    "W3-667",
+    "W3-668",
+    "W3-669",
+    "W3-67",
+    "W3-670",
+    "W3-671",
+    "W3-673",
+    "W3-674",
+    "W3-676",
+    "W3-677",
+    "W3-678",
+    "W3-680",
+    "W3-681",
+    "W3-683",
+    "W3-688",
+    "W3-689",
+    "W3-69",
+    "W3-690",
+    "W3-691",
+    "W3-693",
+    "W3-695",
+    "W3-696",
+    "W3-697",
+    "W3-698",
+    "W3-699",
+    "W3-7",
+    "W3-70",
+    "W3-700",
+    "W3-703",
+    "W3-704",
+    "W3-707",
+    "W3-708",
+    "W3-709",
+    "W3-710",
+    "W3-712",
+    "W3-73",
+    "W3-74",
+    "W3-75",
+    "W3-76",
+    "W3-77",
+    "W3-78",
+    "W3-79",
+    "W3-8",
+    "W3-80",
+    "W3-81",
+    "W3-82",
+    "W3-83",
+    "W3-84",
+    "W3-85",
+    "W3-86",
+    "W3-87",
+    "W3-88",
+    "W3-89",
+    "W3-9",
+    "W3-90",
+    "W3-91",
+    "W3-96",
+    "W3-97",
+    "W3-98",
+    "W3-99",
+    "W4-120",
+    "W4-148",
+    "W4-17",
+    "W4-194",
+    "W4-200",
+    "W4-205",
+    "W4-231",
+    "W4-404",
+    "W4-6",
+    "W5-100",
+    "W5-101",
+    "W5-102",
+    "W5-103",
+    "W5-104",
+    "W5-105",
+    "W5-106",
+    "W5-107",
+    "W5-108",
+    "W5-109",
+    "W5-110",
+    "W5-111",
+    "W5-112",
+    "W5-138",
+    "W5-139",
+    "W5-140",
+    "W5-141",
+    "W5-142",
+    "W5-143",
+    "W5-144",
+    "W5-145",
+    "W5-146",
+    "W5-147",
+    "W5-148",
+    "W5-149",
+    "W5-150",
+    "W5-151",
+    "W5-152",
+    "W5-153",
+    "W5-154",
+    "W5-155",
+    "W5-156",
+    "W5-157",
+    "W5-158",
+    "W5-159",
+    "W5-160",
+    "W5-161",
+    "W5-162",
+    "W5-163",
+    "W5-164",
+    "W5-165",
+    "W5-166",
+    "W5-167",
+    "W5-168",
+    "W5-169",
+    "W5-170",
+    "W5-171",
+    "W5-172",
+    "W5-173",
+    "W5-174",
+    "W5-175",
+    "W5-176",
+    "W5-177",
+    "W5-178",
+    "W5-179",
+    "W5-180",
+    "W5-181",
+    "W5-182",
+    "W5-183",
+    "W5-184",
+    "W5-185",
+    "W5-186",
+    "W5-187",
+    "W5-188",
+    "W5-189",
+    "W5-190",
+    "W5-191",
+    "W5-192",
+    "W5-193",
+    "W5-194",
+    "W5-195",
+    "W5-196",
+    "W5-197",
+    "W5-198",
+    "W5-199",
+    "W5-200",
+    "W5-201",
+    "W5-202",
+    "W5-203",
+    "W5-204",
+    "W5-205",
+    "W5-206",
+    "W5-207",
+    "W5-208",
+    "W5-209",
+    "W5-21",
+    "W5-210",
+    "W5-211",
+    "W5-212",
+    "W5-213",
+    "W5-214",
+    "W5-215",
+    "W5-216",
+    "W5-217",
+    "W5-218",
+    "W5-219",
+    "W5-220",
+    "W5-221",
+    "W5-222",
+    "W5-223",
+    "W5-224",
+    "W5-225",
+    "W5-226",
+    "W5-227",
+    "W5-228",
+    "W5-229",
+    "W5-230",
+    "W5-231",
+    "W5-232",
+    "W5-233",
+    "W5-234",
+    "W5-235",
+    "W5-236",
+    "W5-237",
+    "W5-238",
+    "W5-239",
+    "W5-240",
+    "W5-241",
+    "W5-252",
+    "W5-253",
+    "W5-279",
+    "W5-322",
+    "W5-323",
+    "W5-97",
+    "W5-98",
+    "W5-99"
+  ],
+  "summary": {
+    "totalProperties": 8685,
+    "totalBuildings": 1998,
+    "unitsWithPhoto": 7899,
+    "unitsWithPlan": 8676,
+    "unitsLinkedToFootprint": 5698
+  }
+}

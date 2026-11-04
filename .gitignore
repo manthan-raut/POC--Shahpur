@@ -7,4 +7,11 @@ Desktop.ini
 # Temporary files
 *.tmp
 *.log
+*.zip
+__pycache__/
+*.pyc
+
+# Heavy media assets & archives (1.3+ GB)
+Shahapur photos/
+PLANS/
 

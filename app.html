@@ -15,7 +15,18 @@
         e.stopImmediatePropagation();
         return true;
       }
+      console.error('[Shahapur GIS - Uncaught Application Error]', {
+        message: e.message,
+        source: e.filename,
+        line: e.lineno,
+        column: e.colno,
+        error: e.error
+      });
     }, true);
+
+    window.addEventListener('unhandledrejection', function (e) {
+      console.error('[Shahapur GIS - Unhandled Promise Rejection]', e.reason);
+    });
   </script>
 
   <!-- Google Fonts (Plus Jakarta Sans - High-End Agency Typography) -->
@@ -135,9 +146,109 @@
     </main>
   </div>
 
+  <!-- Global Property Photo Lightbox Modal -->
+  <div id="photo-lightbox-modal" class="photo-lightbox-modal" role="dialog" aria-modal="true">
+    <div class="photo-lightbox-dialog">
+      <div class="photo-lightbox-header">
+        <div style="display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap; flex:1; min-width:0;">
+          <div class="photo-lightbox-title" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:280px;">
+            <i class="ph ph-image"></i> <span id="photo-lightbox-caption">Property Photo</span>
+          </div>
+          <!-- Segmented Media Mode Switcher (Photos vs Plans) -->
+          <div class="lightbox-mode-switcher" id="lightbox-mode-switcher" style="display:none;">
+            <button class="lightbox-mode-btn active" id="btn-lb-mode-photos" onclick="window.switchLightboxGalleryMode('photos')">
+              <i class="ph ph-camera"></i> Photos (<span id="lb-photos-count">0</span>)
+            </button>
+            <button class="lightbox-mode-btn" id="btn-lb-mode-plans" onclick="window.switchLightboxGalleryMode('plans')">
+              <i class="ph ph-blueprint"></i> Plans (<span id="lb-plans-count">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- Lightbox Interactive Zoom Toolbar -->
+        <div class="lightbox-zoom-toolbar">
+          <button class="lightbox-zoom-btn" onclick="window.stepLightboxZoom(-0.25)" title="Zoom Out"><i class="ph ph-magnifying-glass-minus"></i></button>
+          <input type="range" id="lightbox-zoom-slider" min="1" max="6" step="0.1" value="1" aria-label="Zoom" oninput="window.setLightboxZoom(parseFloat(this.value))">
+          <span class="lightbox-zoom-val" id="lightbox-zoom-val">100%</span>
+          <button class="lightbox-zoom-btn" onclick="window.stepLightboxZoom(0.25)" title="Zoom In"><i class="ph ph-magnifying-glass-plus"></i></button>
+          <button class="btn btn-secondary btn-sm" onclick="window.resetLightboxZoom()" style="padding:0.15rem 0.45rem; font-size:0.68rem; margin-left:0.25rem;">Reset</button>
+        </div>
+        <button id="btn-close-lightbox" class="btn-icon" title="Close (Esc)"><i class="ph ph-x"></i></button>
+      </div>
+
+      <div class="photo-lightbox-img-wrap" id="photo-lightbox-img-wrap">
+        <!-- Floating Left Navigation Button to change image -->
+        <button class="lightbox-nav-btn prev" id="btn-lightbox-nav-prev" onclick="window.stepLightboxImage(-1)" title="Previous Image (Left Arrow Key)">
+          <i class="ph ph-caret-left"></i>
+        </button>
+
+        <img id="photo-lightbox-img" class="photo-lightbox-img" alt="Property photo or plan">
+
+        <!-- Floating Right Navigation Button to change image -->
+        <button class="lightbox-nav-btn next" id="btn-lightbox-nav-next" onclick="window.stepLightboxImage(1)" title="Next Image (Right Arrow Key)">
+          <i class="ph ph-caret-right"></i>
+        </button>
+
+        <!-- Floating Image Index Badge -->
+        <div class="lightbox-counter-badge" id="lightbox-counter-badge">
+          <span id="lb-counter-current">1</span> of <span id="lb-counter-total">1</span>
+        </div>
+      </div>
+
+      <!-- Quick Thumbnail Navigation Strip -->
+      <div class="lightbox-thumbs-strip" id="lightbox-thumbs-strip" style="display:none;"></div>
+
+      <div class="photo-lightbox-footer">
+        <!-- Navigation Buttons in Footer -->
+        <div class="lightbox-footer-nav" id="lightbox-footer-nav" style="display:flex; align-items:center; gap:0.5rem;">
+          <button class="btn btn-secondary btn-sm" id="btn-lb-prev-foot" onclick="window.stepLightboxImage(-1)" title="Previous Image (Left Arrow Key)">
+            <i class="ph ph-caret-left"></i> Prev Image
+          </button>
+          <span class="lightbox-footer-count" id="lightbox-footer-count" style="font-weight:700; color:#0f172a; font-size:0.75rem;">1 / 1</span>
+          <button class="btn btn-secondary btn-sm" id="btn-lb-next-foot" onclick="window.stepLightboxImage(1)" title="Next Image (Right Arrow Key)">
+            Next Image <i class="ph ph-caret-right"></i>
+          </button>
+        </div>
+
+        <span id="photo-lightbox-meta" style="flex:1; text-align:center; padding:0 0.5rem; font-size:0.75rem; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Shahapur Civic Infrastructure Asset</span>
+        
+        <button id="btn-lightbox-download" class="btn btn-secondary btn-sm"><i class="ph ph-download-simple"></i> Download Image</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Official Property Assessment Print Modal -->
+  <div id="property-print-modal" class="print-modal-overlay" role="dialog" aria-modal="true">
+    <div class="print-modal-container">
+      <div class="print-modal-toolbar">
+        <div style="display:flex; align-items:center; gap:0.5rem; font-weight:700;">
+          <i class="ph ph-printer"></i> Official Municipal Assessment Card Print Preview
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn btn-primary btn-sm" onclick="window.triggerPrintSheet()">
+            <i class="ph ph-printer"></i> Print / Save PDF
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="document.getElementById('property-print-modal').classList.remove('active')">
+            <i class="ph ph-x"></i> Close
+          </button>
+        </div>
+      </div>
+      <div class="print-modal-body">
+        <div id="printable-property-card" class="official-sheet">
+          <!-- Dynamically populated by window.printPropertyCard() -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shahapur Synthesized Data (Excel + Shapefiles + Photo Index) -->
+  <script src="data/summaryStats.js"></script>
+  <script src="data/councilData.js"></script>
+  <script src="data/wardsData.js"></script>
+  <script src="data/buildingsData.js"></script>
+  <script src="data/taxRecordsData.js"></script>
+
   <!-- Scripts -->
-
-
   <script src="js/mockData.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/sidebar.js"></script>
@@ -152,11 +263,232 @@
   <script src="js/export/exportExcel.js"></script>
   <script src="js/export/exportCsv.js"></script>
   <script>
-    // Initialization
+    // Initialization & Dependency Diagnostics
     window.addEventListener('DOMContentLoaded', () => {
+      console.info('%c[Shahapur GIS Portal]%c Core application shell loaded.', 'color: #0A4259; font-weight: 800; font-size: 13px;', 'color: #00B4D8; font-weight: 600;');
+      console.log('[Shahapur GIS - Diagnostics] Checking third-party libraries:', {
+        ChartJS: typeof Chart !== 'undefined' ? 'Loaded' : 'MISSING',
+        SheetJS_XLSX: typeof XLSX !== 'undefined' ? 'Loaded' : 'MISSING',
+        jsPDF: typeof window.jspdf !== 'undefined' ? 'Loaded' : 'MISSING',
+        ArcGIS_DojoRequire: typeof require === 'function' ? 'Loaded' : 'MISSING',
+        ShahapurData: typeof window.SHAHAPUR_TAX_DATA !== 'undefined' ? `${window.SHAHAPUR_TAX_DATA.length} records` : 'MISSING'
+      });
       checkAuth();
       initRouter();
       initSidebar();
+
+      // ---------------------------------------------------------------
+      // Media viewer (lightbox): photos + plans of ONE unit, with zoom & pan
+      //   - zoom slider / +/- buttons / mouse wheel / double-click
+      //   - drag to pan when zoomed in; arrow keys change image; Esc closes
+      // ---------------------------------------------------------------
+      const MEDIA_DIRS = { photos: 'Shahapur photos/Shahapur photos/', plans: 'PLANS/PLANS_PNG/' };
+      const ZOOM_MIN = 1, ZOOM_MAX = 6;
+      const lbView = { zoom: 1, x: 0, y: 0 };
+      window.__lightboxGallery = { photos: [], plans: [], activeMode: 'photos', currentIndex: 0, baseCaption: '' };
+
+      function applyLightboxTransform() {
+        const img = document.getElementById('photo-lightbox-img');
+        const wrap = document.getElementById('photo-lightbox-img-wrap');
+        if (!img || !wrap) return;
+        // Keep the image inside the frame while panning
+        const maxX = Math.max(0, (img.offsetWidth * lbView.zoom - wrap.clientWidth) / 2);
+        const maxY = Math.max(0, (img.offsetHeight * lbView.zoom - wrap.clientHeight) / 2);
+        lbView.x = Math.max(-maxX, Math.min(maxX, lbView.x));
+        lbView.y = Math.max(-maxY, Math.min(maxY, lbView.y));
+        img.style.transform = `translate(${lbView.x}px, ${lbView.y}px) scale(${lbView.zoom})`;
+        wrap.classList.toggle('is-zoomed', lbView.zoom > 1);
+        const slider = document.getElementById('lightbox-zoom-slider');
+        const label = document.getElementById('lightbox-zoom-val');
+        if (slider) slider.value = lbView.zoom;
+        if (label) label.textContent = `${Math.round(lbView.zoom * 100)}%`;
+      }
+
+      window.setLightboxZoom = function(val) {
+        const z = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, Number(val) || 1));
+        // Scale the pan offset with the zoom so the same spot stays centred
+        lbView.x *= z / lbView.zoom;
+        lbView.y *= z / lbView.zoom;
+        lbView.zoom = z;
+        if (z === 1) { lbView.x = 0; lbView.y = 0; }
+        applyLightboxTransform();
+      };
+      window.stepLightboxZoom = delta => window.setLightboxZoom(lbView.zoom + delta);
+      window.resetLightboxZoom = () => { lbView.zoom = 1; lbView.x = 0; lbView.y = 0; applyLightboxTransform(); };
+
+      /** Open the viewer. opts: { photos:[], plans:[], mode:'photos'|'plans', index, caption } */
+      window.openMediaViewer = function(opts) {
+        const photos = (opts.photos || []).filter(Boolean);
+        const plans = (opts.plans || []).filter(Boolean);
+        let mode = opts.mode === 'plans' && plans.length ? 'plans' : 'photos';
+        if (mode === 'photos' && !photos.length) mode = 'plans';
+        if (!photos.length && !plans.length) return;
+        window.__lightboxGallery = { photos, plans, activeMode: mode, currentIndex: opts.index || 0, baseCaption: opts.caption || '' };
+        window.renderLightboxCurrentItem();
+        document.getElementById('photo-lightbox-modal').classList.add('active');
+      };
+
+      // Backwards-compatible entry points (used by the Tax Records page). Only the images
+      // passed in are shown - no guessing of "sibling" images from other units.
+      window.openPhotoLightbox = function(fileName, caption, type, customPhotos, customPlans) {
+        const file = decodeURIComponent(String(fileName || '')).replace(/^.*[\\\/]/, '');
+        const isPlan = type === 'plan' || /\.png$/i.test(file);
+        const photos = Array.isArray(customPhotos) ? [...customPhotos] : [];
+        const plans = Array.isArray(customPlans) ? [...customPlans] : [];
+        const list = isPlan ? plans : photos;
+        if (file && !list.includes(file)) list.unshift(file);
+        window.openMediaViewer({ photos, plans, mode: isPlan ? 'plans' : 'photos', index: Math.max(0, list.indexOf(file)), caption });
+      };
+      window.openPlanLightbox = (planFile, caption, customPhotos, customPlans) =>
+        window.openPhotoLightbox(planFile, caption, 'plan', customPhotos, customPlans);
+
+      function mediaLabel(mode, file, i) {
+        if (mode === 'plans') return `Plan ${i + 1}`;
+        const m = String(file).match(/-([A-Z])(?:\s*\((\d+)\))?\.jpg$/i);
+        return m ? `Photo ${m[1].toUpperCase()}${m[2] ? ' (' + m[2] + ')' : ''}` : `Photo ${i + 1}`;
+      }
+
+      window.renderLightboxCurrentItem = function() {
+        const gal = window.__lightboxGallery;
+        const items = gal[gal.activeMode];
+        if (!items || !items.length) return;
+        gal.currentIndex = (gal.currentIndex + items.length) % items.length;
+        const file = items[gal.currentIndex];
+        const url = encodeURI(MEDIA_DIRS[gal.activeMode] + file);
+        const label = mediaLabel(gal.activeMode, file, gal.currentIndex);
+        const byId = id => document.getElementById(id);
+
+        const img = byId('photo-lightbox-img');
+        img.classList.toggle('is-plan', gal.activeMode === 'plans');
+        img.onload = applyLightboxTransform;  // re-clamp pan once real size is known
+        img.src = url;
+        img.alt = `${gal.baseCaption} - ${label}`;
+        window.resetLightboxZoom();
+
+        byId('photo-lightbox-caption').textContent = `${gal.baseCaption} — ${label}`;
+        byId('photo-lightbox-meta').textContent = file;
+        byId('lb-counter-current').textContent = gal.currentIndex + 1;
+        byId('lb-counter-total').textContent = items.length;
+        byId('lightbox-footer-count').textContent = `${gal.currentIndex + 1} of ${items.length}`;
+
+        const hasBoth = gal.photos.length > 0 && gal.plans.length > 0;
+        byId('lightbox-mode-switcher').style.display = hasBoth ? 'flex' : 'none';
+        byId('lb-photos-count').textContent = gal.photos.length;
+        byId('lb-plans-count').textContent = gal.plans.length;
+        byId('btn-lb-mode-photos').classList.toggle('active', gal.activeMode === 'photos');
+        byId('btn-lb-mode-plans').classList.toggle('active', gal.activeMode === 'plans');
+
+        const canCycle = items.length > 1;
+        ['btn-lightbox-nav-prev', 'btn-lightbox-nav-next'].forEach(id => { byId(id).style.display = canCycle ? 'flex' : 'none'; });
+        ['btn-lb-prev-foot', 'btn-lb-next-foot'].forEach(id => { byId(id).disabled = !canCycle; });
+
+        byId('btn-lightbox-download').onclick = () => {
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = file;
+          a.click();
+        };
+
+        // Thumbnails: all media of this unit (built with DOM APIs, no HTML injection)
+        const strip = byId('lightbox-thumbs-strip');
+        const all = [...gal.photos.map((f, i) => ['photos', f, i]), ...gal.plans.map((f, i) => ['plans', f, i])];
+        strip.style.display = all.length > 1 ? 'flex' : 'none';
+        strip.replaceChildren(...all.map(([mode, f, i]) => {
+          const item = document.createElement('div');
+          item.className = 'lightbox-thumb-item' + (mode === gal.activeMode && i === gal.currentIndex ? ' active' : '');
+          item.title = f;
+          item.onclick = () => window.goToLightboxImage(i, mode);
+          const thumb = document.createElement('img');
+          thumb.src = encodeURI(MEDIA_DIRS[mode] + f);
+          thumb.alt = '';
+          thumb.loading = 'lazy';
+          const badge = document.createElement('span');
+          badge.className = 'lightbox-thumb-badge';
+          badge.textContent = mediaLabel(mode, f, i);
+          item.append(thumb, badge);
+          return item;
+        }));
+      };
+
+      window.stepLightboxImage = function(delta) {
+        window.__lightboxGallery.currentIndex += delta;
+        window.renderLightboxCurrentItem();
+      };
+      window.switchLightboxGalleryMode = function(mode) {
+        const gal = window.__lightboxGallery;
+        if (!gal[mode] || !gal[mode].length) return;
+        gal.activeMode = mode;
+        gal.currentIndex = 0;
+        window.renderLightboxCurrentItem();
+      };
+      window.goToLightboxImage = function(index, mode) {
+        const gal = window.__lightboxGallery;
+        if (mode) gal.activeMode = mode;
+        gal.currentIndex = index;
+        window.renderLightboxCurrentItem();
+      };
+      window.closePhotoLightbox = function() {
+        document.getElementById('photo-lightbox-modal').classList.remove('active');
+      };
+
+      // Wheel zoom, double-click zoom and drag-to-pan on the image frame
+      const lbWrap = document.getElementById('photo-lightbox-img-wrap');
+      if (lbWrap) {
+        lbWrap.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          window.setLightboxZoom(lbView.zoom * (e.deltaY < 0 ? 1.15 : 1 / 1.15));
+        }, { passive: false });
+        lbWrap.addEventListener('dblclick', (e) => {
+          if (e.target.closest('button')) return;
+          window.setLightboxZoom(lbView.zoom > 1 ? 1 : 2.5);
+        });
+        let drag = null;
+        lbWrap.addEventListener('pointerdown', (e) => {
+          if (lbView.zoom <= 1 || e.target.closest('button')) return;
+          drag = { x: e.clientX - lbView.x, y: e.clientY - lbView.y };
+          lbWrap.setPointerCapture(e.pointerId);
+          lbWrap.classList.add('is-dragging');
+        });
+        lbWrap.addEventListener('pointermove', (e) => {
+          if (!drag) return;
+          lbView.x = e.clientX - drag.x;
+          lbView.y = e.clientY - drag.y;
+          applyLightboxTransform();
+        });
+        const endDrag = () => { drag = null; lbWrap.classList.remove('is-dragging'); };
+        lbWrap.addEventListener('pointerup', endDrag);
+        lbWrap.addEventListener('pointercancel', endDrag);
+      }
+
+      window.triggerPrintSheet = function() {
+        window.print();
+      };
+
+      const btnClose = document.getElementById('btn-close-lightbox');
+      if (btnClose) btnClose.addEventListener('click', window.closePhotoLightbox);
+
+      const modalEl = document.getElementById('photo-lightbox-modal');
+      if (modalEl) {
+        modalEl.addEventListener('click', (e) => {
+          if (e.target.id === 'photo-lightbox-modal') window.closePhotoLightbox();
+        });
+      }
+
+      // Keyboard Controls: Escape to close, Left Arrow for Prev Image, Right Arrow for Next Image
+      document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('photo-lightbox-modal');
+        if (modal && modal.classList.contains('active')) {
+          if (e.key === 'Escape') {
+            window.closePhotoLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.stepLightboxImage(-1);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            window.stepLightboxImage(1);
+          }
+        }
+      });
     });
   </script>
 </body>

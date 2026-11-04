@@ -1,196 +1,240 @@
 // js/mockData.js
 
 /**
- * MOCK TAX DATA MODULE
+ * SHAHAPUR TAX DATA SERVICE MODULE
  * 
- * Note: Since a real backend API is not provided, we mock the tax dataset here.
- * The primary identifier matches the `OBJECTID_1` field from the MapServer `Building` (Layer 2).
- * Wards match the `Ward_No` from the `Ward_Boundary` (Layer 14).
- * 
- * Expected shape of a real API response:
- * [
- *   {
- *     "propertyId": Number (maps to Building OBJECTID_1),
- *     "wardNo": String (maps to Ward_Boundary Ward_No),
- *     "ownerName": String,
- *     "assessedAmount": Number,
- *     "paidAmount": Number,
- *     "pendingAmount": Number,
- *     "status": "Paid" | "Pending",
- *     "lastPaymentDate": String (YYYY-MM-DD)
- *   },
- *   ...
- * ]
+ * Aggregated and verified from:
+ * - Shahapur DATA_31-10-26.xlsx (8,685 real property tax assessments across Wards 1 to 5)
+ * - Shahapur photos/Shahapur photos (11,005 indexed photographic building assets)
+ * - Shahapur Tagged Data/FINAL DATA TAGGED (Ward 1 to 5 polygon footprints)
  */
 
-// Load from localStorage if available, otherwise generate
-const STORAGE_KEY = 'gis_tax_records_dataset';
-let mockTaxData = [];
+console.log('[Shahapur GIS - TaxData] Loading TaxDataService module...');
 
-function initMockData() {
+// Bump the key whenever scripts/build_data.py changes the record shape, so stale caches are ignored
+const STORAGE_KEY = 'gis_tax_records_dataset_v3';
+let taxDataset = [];
+
+function initTaxData() {
+  console.log('[Shahapur GIS - TaxData] Initializing tax dataset from storage key:', STORAGE_KEY);
+  
+  // Clean up legacy v1 mock records if present
+  try {
+    ['gis_tax_records_dataset', 'gis_tax_records_dataset_v2'].forEach(k => localStorage.removeItem(k));
+  } catch(e) {}
+
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) {
     try {
-      mockTaxData = JSON.parse(saved);
-      return;
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length >= 8000) {
+        taxDataset = parsed;
+        console.info('[Shahapur GIS - TaxData] Successfully loaded', taxDataset.length, 'records from localStorage.');
+        return;
+      }
     } catch(e) {
-      console.error("Failed to load saved tax data, generating new mock data", e);
+      console.error("[Shahapur GIS - TaxData] Failed to parse saved tax data from localStorage:", e);
     }
   }
 
-  const WARD_NOS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  const OWNER_FIRST = ["Ramesh", "Suresh", "Anjali", "Priya", "Vikram", "Neha", "Rahul", "Kavita", "Amit", "Sneha"];
-  const OWNER_LAST = ["Patil", "Deshmukh", "Joshi", "Kulkarni", "Jadhav", "Shinde", "Pawar", "Bhosale", "Kale", "Kadam"];
-
-  // Generate 500 dummy tax records assuming OBJECTID_1 ranges from 1 to 1000 roughly
-  for (let i = 1; i <= 500; i++) {
-    const propertyId = i; // Will match OBJECTID_1 in GIS
-    const wardNo = WARD_NOS[Math.floor(Math.random() * WARD_NOS.length)];
-    const ownerName = `${OWNER_FIRST[Math.floor(Math.random() * OWNER_FIRST.length)]} ${OWNER_LAST[Math.floor(Math.random() * OWNER_LAST.length)]}`;
-    
-    const assessedAmount = Math.floor(Math.random() * 10000) + 1000;
-    
-    // 70% paid, 30% pending
-    const isPaid = Math.random() > 0.3;
-    let paidAmount = 0;
-    let pendingAmount = assessedAmount;
-    let status = "Pending";
-    let lastPaymentDate = null;
-    
-    if (isPaid) {
-      paidAmount = assessedAmount;
-      pendingAmount = 0;
-      status = "Paid";
-      
-      const date = new Date();
-      date.setDate(date.getDate() - Math.floor(Math.random() * 365));
-      lastPaymentDate = date.toISOString().split('T')[0];
-    } else if (Math.random() > 0.5) {
-      // Partially paid
-      paidAmount = Math.floor(assessedAmount / 2);
-      pendingAmount = assessedAmount - paidAmount;
-      status = "Pending";
-      const date = new Date();
-      date.setDate(date.getDate() - Math.floor(Math.random() * 365) - 365);
-      lastPaymentDate = date.toISOString().split('T')[0];
-    }
-    
-    mockTaxData.push({
-      propertyId,
-      wardNo,
-      ownerName,
-      assessedAmount,
-      paidAmount,
-      pendingAmount,
-      status,
-      lastPaymentDate
-    });
+  // Load from pre-synthesized Shahapur Excel dataset
+  if (typeof window !== 'undefined' && window.SHAHAPUR_TAX_DATA && window.SHAHAPUR_TAX_DATA.length > 0) {
+    taxDataset = window.SHAHAPUR_TAX_DATA;
+    console.info('[Shahapur GIS - TaxData] Initialized with', taxDataset.length, 'real Shahapur property records from Excel.');
+    saveDataToStorage();
+    return;
   }
 
-  saveDataToStorage();
+  console.warn('[Shahapur GIS - TaxData] window.SHAHAPUR_TAX_DATA not found. Waiting for data script load...');
+  taxDataset = [];
 }
 
 function saveDataToStorage() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(mockTaxData));
+  try {
+    // Only store delta/custom if under 5MB or keep in memory
+    // For large 8K dataset, avoid hitting browser localStorage quota limits
+    if (taxDataset.length <= 1500) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(taxDataset));
+      console.log('[Shahapur GIS - TaxData] Persisted', taxDataset.length, 'records to localStorage.');
+    }
+  } catch (err) {
+    console.warn('[Shahapur GIS - TaxData] LocalStorage save skipped (exceeds browser quota):', err.message);
+  }
 }
 
-initMockData();
+initTaxData();
 
-// Helpers for Dashboard, Map, and Reports
+// Expose standard API expected across Portal Modules
 window.TaxDataService = {
-  getAll: () => mockTaxData,
+  getAll: () => {
+    if ((!taxDataset || taxDataset.length === 0) && window.SHAHAPUR_TAX_DATA) {
+      taxDataset = window.SHAHAPUR_TAX_DATA;
+    }
+    return taxDataset;
+  },
   
-  getByPropertyId: (id) => mockTaxData.find(t => t.propertyId === parseInt(id)),
+  // Exact lookup only. A bare property number is NOT accepted because the same number
+  // exists in every ward - use getAllByPropertyNo(ward, prop) for that.
+  getByPropertyId: (id) => {
+    if (id === null || id === undefined || id === '') return null;
+    const strId = String(id).trim();
+    const records = window.TaxDataService.getAll();
+    return records.find(t => String(t.propertyId) === strId)          // ownerID from Excel
+      || records.find(t => t.unitKey === strId)                         // "ward-prop-partition"
+      || records.find(t => t.propIdentifier === strId)                  // "W1-2/3"
+      || null;
+  },
+
+  getAllByPropertyNo: (wardNo, propNo) => {
+    const w = String(wardNo).trim();
+    const p = String(propNo).trim();
+    const records = window.TaxDataService.getAll();
+    return records.filter(t => String(t.wardNo) === w && String(t.propertyNo) === p);
+  },
   
-  getByWard: (wardNo) => mockTaxData.filter(t => t.wardNo === wardNo.toString()),
+  getByWard: (wardNo) => {
+    const records = window.TaxDataService.getAll();
+    if (!wardNo || wardNo === 'All') return records;
+    return records.filter(t => String(t.wardNo) === String(wardNo));
+  },
 
   searchRecords: (query) => {
-    const q = query.toString().toLowerCase();
-    return mockTaxData.filter(t => 
-      t.propertyId.toString() === q || 
-      t.ownerName.toLowerCase().includes(q) || 
-      t.wardNo.toString() === q
+    const q = (query || '').toString().toLowerCase().trim();
+    if (!q) return [];
+    const records = window.TaxDataService.getAll();
+    return records.filter(t => 
+      String(t.propertyId) === q || 
+      String(t.propertyNo) === q ||
+      (t.propertyNoOld && t.propertyNoOld.toLowerCase().includes(q)) ||
+      (t.shopNo && String(t.shopNo).toLowerCase().includes(q)) ||
+      (t.wingNo && t.wingNo.toLowerCase() === q) ||
+      (t.propIdentifier && t.propIdentifier.toLowerCase().includes(q)) ||
+      (t.ownerName && t.ownerName.toLowerCase().includes(q)) || 
+      (t.ownerNameMarathi && t.ownerNameMarathi.includes(q)) ||
+      (t.shopBuildingName && t.shopBuildingName.toLowerCase().includes(q)) ||
+      (t.citySurveyGatNo && t.citySurveyGatNo.toLowerCase().includes(q)) ||
+      (t.contactNo && t.contactNo.includes(q)) ||
+      (t.ownerAddress && t.ownerAddress.toLowerCase().includes(q))
     );
   },
   
   getSummary: () => {
-    let totalAssessed = 0, totalCollected = 0, totalPending = 0;
-    mockTaxData.forEach(t => {
-      totalAssessed += Number(t.assessedAmount || 0);
-      totalCollected += Number(t.paidAmount || 0);
-      totalPending += Number(t.pendingAmount || 0);
+    const stats = window.SHAHAPUR_SUMMARY_STATS;
+    if (stats) {
+      return {
+        totalProperties: stats.totalProperties || 0,
+        totalAssessed: stats.totalAssessed || 0,
+        totalRateableValue: stats.totalRateableValue || 0,
+        assessedPropertiesCount: stats.assessedPropertiesCount || 0,
+        unassessedPropertiesCount: stats.unassessedPropertiesCount || 0,
+        totalCollected: 0.0,          // the register has no payment columns
+        totalPending: stats.totalPending || 0,
+        collectionPercentage: '0.00'
+      };
+    }
+    const records = window.TaxDataService.getAll();
+    let totalAssessed = 0, totalRv = 0, assessedCount = 0, unassessedCount = 0;
+    records.forEach(t => {
+      const tax = Number(t.assessedAmount || t.totalTaxOld || 0);
+      const rv = Number(t.rvOld || 0);
+      totalAssessed += tax;
+      totalRv += rv;
+      if (tax > 0) assessedCount++;
+      else unassessedCount++;
     });
     return {
-      totalProperties: mockTaxData.length,
-      totalAssessed,
-      totalCollected,
-      totalPending,
-      collectionPercentage: totalAssessed > 0 ? ((totalCollected / totalAssessed) * 100).toFixed(2) : '0.00'
+      totalProperties: records.length,
+      totalAssessed: Math.round(totalAssessed * 100) / 100,
+      totalRateableValue: Math.round(totalRv * 100) / 100,
+      assessedPropertiesCount: assessedCount,
+      unassessedPropertiesCount: unassessedCount,
+      totalCollected: 0.0,
+      totalPending: Math.round(totalAssessed * 100) / 100,
+      collectionPercentage: '0.00'
     };
   },
   
   getWardSummary: (wardNo) => {
-    const data = wardNo === 'All' ? mockTaxData : window.TaxDataService.getByWard(wardNo);
-    let totalAssessed = 0, totalCollected = 0, totalPending = 0;
-    let paidCount = 0, pendingCount = 0;
+    const stats = window.SHAHAPUR_SUMMARY_STATS;
+    if (stats && wardNo && wardNo !== 'All' && stats.wardTotals && stats.wardTotals[String(wardNo)]) {
+      const wt = stats.wardTotals[String(wardNo)];
+      return {
+        totalProperties: wt.totalProperties,
+        totalAssessed: wt.totalAssessed,
+        totalRateableValue: wt.totalRateableValue,
+        assessedCount: wt.assessedCount,
+        unassessedCount: wt.unassessedCount,
+        totalCollected: 0.0,
+        totalPending: wt.totalPending
+      };
+    }
+    const data = wardNo === 'All' ? window.TaxDataService.getAll() : window.TaxDataService.getByWard(wardNo);
+    let totalAssessed = 0, totalRv = 0;
+    let assessedCount = 0, unassessedCount = 0;
     
     data.forEach(t => {
-      totalAssessed += Number(t.assessedAmount || 0);
-      totalCollected += Number(t.paidAmount || 0);
-      totalPending += Number(t.pendingAmount || 0);
-      if (t.status === 'Paid') paidCount++;
-      else pendingCount++;
+      const tax = Number(t.assessedAmount || t.totalTaxOld || 0);
+      const rv = Number(t.rvOld || 0);
+      totalAssessed += tax;
+      totalRv += rv;
+      if (tax > 0) assessedCount++;
+      else unassessedCount++;
     });
     
     return {
       totalProperties: data.length,
-      totalAssessed,
-      totalCollected,
-      totalPending,
-      collectionPercentage: totalAssessed > 0 ? ((totalCollected / totalAssessed) * 100).toFixed(2) : 0,
-      paidCount,
-      pendingCount
+      totalAssessed: Math.round(totalAssessed * 100) / 100,
+      totalRateableValue: Math.round(totalRv * 100) / 100,
+      totalCollected: 0.0,
+      totalPending: Math.round(totalAssessed * 100) / 100,
+      assessedCount,
+      unassessedCount
     };
   },
 
   bulkUpdateRecords: (newRecords) => {
+    console.log('[Shahapur GIS - TaxData] TaxDataService.bulkUpdateRecords() received', newRecords.length, 'records.');
     let updatedCount = 0;
     let addedCount = 0;
+    const records = window.TaxDataService.getAll();
 
     newRecords.forEach(rec => {
-      const existingIdx = mockTaxData.findIndex(t => t.propertyId === Number(rec.propertyId));
+      const existingIdx = records.findIndex(t => t.propertyId === Number(rec.propertyId));
       if (existingIdx !== -1) {
-        mockTaxData[existingIdx] = {
-          ...mockTaxData[existingIdx],
-          ...rec,
-          propertyId: Number(rec.propertyId),
-          assessedAmount: Number(rec.assessedAmount || 0),
-          paidAmount: Number(rec.paidAmount || 0),
-          pendingAmount: Number(rec.pendingAmount || 0)
-        };
+        // Merge only the fields supplied; everything else keeps its register value
+        records[existingIdx] = { ...records[existingIdx], ...rec, propertyId: Number(rec.propertyId) };
         updatedCount++;
       } else {
-        mockTaxData.push({
+        records.push({
           propertyId: Number(rec.propertyId),
-          wardNo: rec.wardNo ? rec.wardNo.toString() : "1",
-          ownerName: rec.ownerName || "Unknown Owner",
+          wardNo: rec.wardNo ? String(rec.wardNo) : "",
+          ownerName: rec.ownerName || "",
           assessedAmount: Number(rec.assessedAmount || 0),
           paidAmount: Number(rec.paidAmount || 0),
           pendingAmount: Number(rec.pendingAmount || 0),
-          status: rec.status || (Number(rec.pendingAmount) === 0 ? "Paid" : "Pending"),
-          lastPaymentDate: rec.lastPaymentDate || new Date().toISOString().split('T')[0]
+          status: rec.status || "",
+          lastPaymentDate: rec.lastPaymentDate || "",
+          photos: [],
+          plans: [],
+          buildingIds: []
         });
         addedCount++;
       }
     });
 
+    taxDataset = records;
     saveDataToStorage();
+    console.info('[Shahapur GIS - TaxData] Bulk update complete:', { updatedCount, addedCount, totalInDataset: records.length });
     return { updatedCount, addedCount };
   },
 
   resetData: () => {
+    console.warn('[Shahapur GIS - TaxData] TaxDataService.resetData() invoked: Re-indexing from Shahapur Excel dataset.');
     localStorage.removeItem(STORAGE_KEY);
-    mockTaxData = [];
-    initMockData();
+    if (window.SHAHAPUR_TAX_DATA) {
+      taxDataset = [...window.SHAHAPUR_TAX_DATA];
+    } else {
+      taxDataset = [];
+    }
   }
 };
