@@ -803,9 +803,7 @@ window.printPropertyCard = function(propertyIdentifier, wardNo) {
         <thead style="background:#f1f5f9; border-bottom:1px solid #cbd5e1;">
           <tr>
             <th style="padding:0.5rem 0.75rem;">Assessment Cycle</th>
-            <th style="padding:0.5rem 0.75rem; text-align:right;">Total Tax Demand</th>
-            <th style="padding:0.5rem 0.75rem; text-align:right;">Rateable Value (RV)</th>
-            <th style="padding:0.5rem 0.75rem; text-align:right;">Property Tax (Old)</th>
+            <th style="padding:0.5rem 0.75rem; text-align:right;">Property Tax</th>
             <th style="padding:0.5rem 0.75rem; text-align:center;">Assessment Status</th>
           </tr>
         </thead>
@@ -813,8 +811,6 @@ window.printPropertyCard = function(propertyIdentifier, wardNo) {
           <tr>
             <td style="padding:0.6rem 0.75rem; font-weight:600;">Existing assessment register</td>
             <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:800; color:var(--color-primary);">₹${assessed.toLocaleString()}</td>
-            <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:700; color:#0284c7;">₹${Number(rec ? (rec.rvOld || 0) : 0).toLocaleString()}</td>
-            <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:700; color:#059669;">₹${Number(rec ? (rec.propertyTaxOld || 0) : 0).toLocaleString()}</td>
             <td style="padding:0.6rem 0.75rem; text-align:center;">
               <span class="status-badge ${status === 'Assessed' ? 'paid' : 'pending'}" style="font-size:0.68rem; padding:0.15rem 0.45rem;">
                 ${status}

@@ -23,9 +23,7 @@ const UNIT_COLUMNS = [
   { key: 'ownerNameMarathi', label: 'Owner (Marathi)' },
   { key: 'description', label: 'Usage' },
   { key: 'buildupAreaSqMtr', label: 'Built-up (sq.m)', type: 'number' },
-  { key: 'rvOld', label: 'Rateable Value', type: 'money' },
-  { key: 'propertyTaxOld', label: 'Property Tax (Old)', type: 'money' },
-  { key: 'assessedAmount', label: 'Tax Demand', type: 'money' },
+  { key: 'assessedAmount', label: 'Property Tax', type: 'money' },
   { key: 'status', label: 'Status' }
 ];
 
@@ -46,8 +44,7 @@ const REPORTS = {
       { key: 'units', label: 'Units', type: 'number' },
       { key: 'assessed', label: 'Assessed', type: 'number' },
       { key: 'unassessed', label: 'Unassessed', type: 'number' },
-      { key: 'demand', label: 'Tax Demand', type: 'money' },
-      { key: 'rv', label: 'Rateable Value', type: 'money' },
+      { key: 'demand', label: 'Property Tax', type: 'money' },
       { key: 'photoPct', label: 'With Photo' },
       { key: 'planPct', label: 'With Plan' },
       { key: 'mapPct', label: 'On Map' }
@@ -63,7 +60,6 @@ const REPORTS = {
           assessed: count(u => u.status === 'Assessed'),
           unassessed: count(u => u.status !== 'Assessed'),
           demand: units.reduce((s, u) => s + Number(u.assessedAmount || 0), 0),
-          rv: units.reduce((s, u) => s + Number(u.rvOld || 0), 0),
           photoPct: repPct(count(u => (u.photos || []).length), n),
           planPct: repPct(count(u => (u.plans || []).length || u.plan), n),
           mapPct: repPct(count(u => (u.buildingIds || []).length), n)
@@ -83,7 +79,7 @@ const REPORTS = {
   },
 
   high_demand: {
-    label: 'High Tax Demand Properties',
+    label: 'High Property Tax Properties',
     filters: ['ward', 'minTax'],
     columns: UNIT_COLUMNS,
     rows: (all, f) => all
@@ -92,7 +88,7 @@ const REPORTS = {
   },
 
   unassessed: {
-    label: 'Unassessed Units (no tax demand)',
+    label: 'Unassessed Units (no property tax)',
     filters: ['ward'],
     columns: UNIT_COLUMNS,
     rows: (all, f) => all.filter(u => matchWard(u, f) && u.status !== 'Assessed')
@@ -154,7 +150,7 @@ function renderReports() {
           <label class="rep-field" data-filter="status"><span>Status</span>
             <select id="rf-status"><option value="All">All statuses</option><option value="Assessed">Assessed</option><option value="Unassessed">Unassessed</option></select>
           </label>
-          <label class="rep-field" data-filter="minTax"><span>Minimum tax demand (₹)</span>
+          <label class="rep-field" data-filter="minTax"><span>Minimum property tax (₹)</span>
             <input type="number" id="rf-min-tax" min="0" step="500" value="5000">
           </label>
           <label class="rep-field" data-filter="gap"><span>Missing</span>
@@ -231,7 +227,7 @@ function refreshReportPreview() {
   document.getElementById('rep-stats').innerHTML = report === REPORTS.ward_summary ? '' : `
     <div><span>Rows</span><strong>${rows.length.toLocaleString('en-IN')}</strong></div>
     <div><span>Properties</span><strong>${new Set(rows.map(r => r.wardNo + '-' + r.propertyNo)).size.toLocaleString('en-IN')}</strong></div>
-    ${unitRows.length ? `<div><span>Tax demand</span><strong>${repMoney(demand)}</strong></div>` : ''}
+    ${unitRows.length ? `<div><span>Property tax</span><strong>${repMoney(demand)}</strong></div>` : ''}
   `;
 
   document.getElementById('rep-preview-title').textContent = rows.length > PREVIEW_LIMIT
