@@ -713,3 +713,24 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); pointer-events: none;
 }
 .map-ward-hint[hidden] { display: none; }
+
+/* Railway / Kutcha Road layer prompt */
+.layer-focus-prompt {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  width: min(360px, calc(100% - 32px));
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+.layer-focus-prompt .lfp-head { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.4rem; }
+.layer-focus-prompt .lfp-msg { margin: 0 0 0.6rem; line-height: 1.4; }
+.layer-focus-prompt .lfp-warn { margin: 0 0 0.6rem; font-size: 0.75rem; color: #b45309; background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 0.4rem 0.5rem; }
+.layer-focus-prompt .lfp-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }

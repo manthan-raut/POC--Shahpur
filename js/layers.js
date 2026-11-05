@@ -244,7 +244,13 @@ function applyWardSpatialMask(wardNo) {
       councilLayer.visible = true;
     }
 
-    syncLayerUICheckboxes({ 0: true, 2: true, 14: true });
+    const stillOn = {};
+    if (window.featureGroupLayer) {
+      window.featureGroupLayer.layers.forEach(fl => {
+        if (fl.visible) stillOn[String(fl.id).replace('feature-layer-', '')] = true;
+      });
+    }
+    syncLayerUICheckboxes({ ...stillOn, 0: true, 2: true, 14: true });
 
     // Helper function to apply geometry mask and camera zoom
     const processWardGeometry = (wardGeom) => {
@@ -282,6 +288,16 @@ function applyWardSpatialMask(wardNo) {
 
       if (window.highlightGraphicsLayer) {
         window.highlightGraphicsLayer.add(highlightGraphic);
+      }
+
+      // Kutcha Road layer on: zoom to the kutcha roads inside this ward
+      const kutchaLayer = window.featureGroupLayer ? window.featureGroupLayer.findLayerById("feature-layer-7") : null;
+      if (kutchaLayer && kutchaLayer.visible && wardGeom && appView) {
+        console.log('[Shahapur GIS - Layers] Zooming camera to Kutcha Roads in Ward ' + wardNo + '.');
+        zoomToLayer(kutchaLayer, wardGeom).then(() => {
+          if (window.hideMapLoader) window.hideMapLoader();
+        });
+        return;
       }
 
       // Fast Camera Zoom to Selected Ward Extent
@@ -421,6 +437,7 @@ function buildLayerUI() {
       checkbox.addEventListener('change', (e) => {
         console.log(`[Shahapur GIS - Layers] Toggle layer #${layerDef.id} (${layerDef.title}):`, e.target.checked);
         if (fl) fl.visible = e.target.checked;
+        if (e.target.checked && LAYER_FOCUS_PROMPTS[layerDef.id]) showLayerFocusPrompt(layerDef.id, fl);
       });
 
       const opacitySlider = itemDiv.querySelector(`#opacity-slider-${layerDef.id}`);
@@ -478,3 +495,108 @@ function buildLayerUI() {
   console.info('[Shahapur GIS - Layers] Layer list UI rendered successfully.');
 }
 
+// ---------------------------------------------------------------------------
+// Railway Line / Kutcha Road: zoom to the layer and offer a clearer view
+// ---------------------------------------------------------------------------
+// Line layers are hard to see on satellite imagery, so turning one of these
+// on zooms to it and asks whether to switch to the Topographic basemap
+// (and, for Kutcha Road, hide the Building layer that covers the roads).
+const LAYER_FOCUS_PROMPTS = {
+  12: {
+    icon: 'ph-train',
+    title: 'Railway Line',
+    message: 'The railway line is easier to see on the Topographic basemap. Switch the basemap to Topographic?',
+    hideBuildings: false
+  },
+  7: {
+    icon: 'ph-path',
+    title: 'Kutcha Road',
+    message: 'Kutcha roads are easier to see on the Topographic basemap without buildings on top. Switch the basemap to Topographic and turn off the Building layer?',
+    hideBuildings: true
+  }
+};
+
+// Geometry of the ward picked in the Query Section, or null for "All"
+function selectedWardGeometry() {
+  const sel = document.getElementById('ward-select');
+  const wardNo = sel ? sel.value : 'All';
+  return /^\d+$/.test(wardNo) ? (window.wardGeomCache || {})[wardNo] || null : null;
+}
+
+// Zoom to a layer's features; with a ward selected, only to those inside that
+// ward. Falls back to the ward (or whole town) when nothing can be found.
+function zoomToLayer(fl, wardGeom) {
+  const view = window.appView || appView;
+  if (!fl || !view) return Promise.resolve();
+  const ward = wardGeom || selectedWardGeometry();
+  const fallback = () => {
+    if (ward && ward.extent) return view.goTo(ward.extent.expand(1.22), { duration: 600 });
+    if (window.zoomToFullDatasetExtent) window.zoomToFullDatasetExtent();
+  };
+  return fl.when(() => {
+    const q = fl.createQuery();
+    if (ward) {
+      q.geometry = ward;
+      q.spatialRelationship = 'intersects';
+    }
+    return fl.queryExtent(q);
+  })
+    .then(res => (res && res.extent && res.count)
+      ? view.goTo(res.extent.expand(1.3), { duration: 600 })
+      : fallback())
+    .catch(err => {
+      console.warn(`[Shahapur GIS - Layers] Could not zoom to ${fl.title}:`, err && err.message ? err.message : err);
+      return fallback();
+    })
+    .catch(() => {});
+}
+
+function setTopographicBasemap() {
+  // Click the Topographic card so the basemap picker stays in sync
+  const card = document.querySelector('#basemap-popover .basemap-card[data-bm="topo-vector"]');
+  if (card) card.click();
+  else if (window.appMap) window.appMap.basemap = 'topo-vector';
+}
+
+function hideBuildingLayer() {
+  const buildingLayer = window.featureGroupLayer ? window.featureGroupLayer.findLayerById('feature-layer-2') : null;
+  if (buildingLayer) buildingLayer.visible = false;
+  const chk = document.getElementById('layer-chk-2');
+  if (chk) chk.checked = false;
+}
+
+function showLayerFocusPrompt(layerId, fl) {
+  const cfg = LAYER_FOCUS_PROMPTS[layerId];
+  if (!cfg) return;
+  zoomToLayer(fl);
+
+  const mount = document.getElementById('map-mount') || document.body;
+  const old = document.getElementById('layer-focus-prompt');
+  if (old) old.remove();
+
+  const offline = fl && fl.loadStatus === 'failed';
+  const box = document.createElement('div');
+  box.id = 'layer-focus-prompt';
+  box.className = 'layer-focus-prompt';
+  box.setAttribute('role', 'dialog');
+  box.innerHTML = `
+    <div class="lfp-head"><i class="ph ${cfg.icon}"></i> ${cfg.title}</div>
+    <p class="lfp-msg">${cfg.message}</p>
+    ${offline ? `<p class="lfp-warn"><i class="ph ph-warning"></i> The ${cfg.title} data server (MRSAC) is not responding, so the layer may not draw. The Topographic basemap still shows it.</p>` : ''}
+    <div class="lfp-actions">
+      <button class="btn btn-secondary btn-sm" data-lfp="no">No</button>
+      <button class="btn btn-primary btn-sm" data-lfp="yes">Yes</button>
+    </div>
+  `;
+  mount.appendChild(box);
+
+  box.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-lfp]');
+    if (!btn) return;
+    if (btn.dataset.lfp === 'yes') {
+      setTopographicBasemap();
+      if (cfg.hideBuildings) hideBuildingLayer();
+    }
+    box.remove();
+  });
+}
