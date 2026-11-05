@@ -385,18 +385,10 @@ window.viewPropertyAssessmentModal = function(propId) {
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.25rem; text-align:center;">
+        <div style="margin-bottom: 1.25rem; text-align:center;">
           <div style="background:rgba(10,66,89,0.05); padding:0.85rem; border-radius:8px; border:1px solid rgba(10,66,89,0.1);">
-            <div style="font-size:0.68rem; color:#64748b; font-weight:700; text-transform:uppercase;">TOTAL TAX DEMAND</div>
+            <div style="font-size:0.68rem; color:#64748b; font-weight:700; text-transform:uppercase;">PROPERTY TAX</div>
             <div style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-top:0.2rem;">₹${Number(rec.assessedAmount || 0).toLocaleString()}</div>
-          </div>
-          <div style="background:rgba(2,132,199,0.06); padding:0.85rem; border-radius:8px; border:1px solid rgba(2,132,199,0.15);">
-            <div style="font-size:0.68rem; color:#0284c7; font-weight:700; text-transform:uppercase;">RATEABLE VALUE (RV)</div>
-            <div style="font-size:1.15rem; font-weight:800; color:#0284c7; margin-top:0.2rem;">₹${Number(rec.rvOld || 0).toLocaleString()}</div>
-          </div>
-          <div style="background:rgba(16,185,129,0.06); padding:0.85rem; border-radius:8px; border:1px solid rgba(16,185,129,0.15);">
-            <div style="font-size:0.68rem; color:#059669; font-weight:700; text-transform:uppercase;">PROPERTY TAX (OLD)</div>
-            <div style="font-size:1.15rem; font-weight:800; color:#059669; margin-top:0.2rem;">₹${Number(rec.propertyTaxOld || 0).toLocaleString()}</div>
           </div>
         </div>
 
