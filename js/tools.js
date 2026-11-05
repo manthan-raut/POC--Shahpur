@@ -820,25 +820,6 @@ window.printPropertyCard = function(propertyIdentifier, wardNo) {
         </tbody>
       </table>
     </div>
-
-    <!-- Official Certification & Signatures -->
-    <div class="official-signatures">
-      <div class="official-sign-box">
-        <div class="official-sign-line"></div>
-        <strong>Field Surveyor / Assessor</strong>
-        <div style="color:#64748b; font-size:0.7rem; margin-top:0.15rem;">GIS Survey Wing, Shahapur</div>
-      </div>
-      <div class="official-sign-box" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-        <div style="width:65px; height:65px; border:2px dashed #94a3b8; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-size:0.65rem; text-align:center; padding:0.25rem;">
-          MUNICIPAL SEAL
-        </div>
-      </div>
-      <div class="official-sign-box">
-        <div class="official-sign-line"></div>
-        <strong>Chief Officer / Kar Adhikari</strong>
-        <div style="color:#64748b; font-size:0.7rem; margin-top:0.15rem;">Shahapur Nagar Panchayat</div>
-      </div>
-    </div>
   `;
 
   // Open Modal
