@@ -543,9 +543,7 @@ function renderUnitCard(u) {
       </div>
 
       <div class="pp-tax">
-        <div><span>Tax demand</span><strong>${money(u.assessedAmount)}</strong></div>
-        <div><span>Rateable value</span><strong>${money(u.rvOld)}</strong></div>
-        <div><span>Property tax (old)</span><strong>${money(u.propertyTaxOld)}</strong></div>
+        <div><span>Property tax</span><strong>${money(u.assessedAmount)}</strong></div>
       </div>
 
       <div class="pp-amenities">

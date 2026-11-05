@@ -2459,7 +2459,7 @@ h4, .h4 { font-size: 0.9rem; font-weight: 700; }
 }
 .pp-grid span { color: #64748b; font-weight: 600; }
 .pp-grid strong { color: #0f172a; text-align: right; word-break: break-word; }
-.pp-tax { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; text-align: center; }
+.pp-tax { display: grid; grid-template-columns: 1fr; gap: 0.4rem; text-align: center; }
 .pp-tax div { padding: 0.5rem 0.3rem; border-radius: 8px; background: rgba(10, 66, 89, 0.05); border: 1px solid rgba(10, 66, 89, 0.1); }
 .pp-tax span { display: block; font-size: 0.6rem; font-weight: 700; color: #64748b; text-transform: uppercase; }
 .pp-tax strong { display: block; margin-top: 0.15rem; font-size: 0.9rem; color: #0f172a; }
