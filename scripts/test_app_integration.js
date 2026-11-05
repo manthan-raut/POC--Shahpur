@@ -66,7 +66,7 @@ console.log('✓ Tax Records Array Length =', window.SHAHAPUR_TAX_DATA.length);
 console.log('✓ Building Polygons Array Length =', window.SHAHAPUR_BUILDINGS_DATA.features.length);
 
 // 2. Load Services and Tools
-eval(fs.readFileSync('js/mockData.js', 'utf8'));
+eval(fs.readFileSync('js/taxDataService.js', 'utf8'));
 eval(fs.readFileSync('js/tools.js', 'utf8'));
 eval(fs.readFileSync('js/taxRecords.js', 'utf8'));
 

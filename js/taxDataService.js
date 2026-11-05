@@ -1,4 +1,4 @@
-// js/mockData.js
+// js/taxDataService.js  (real register data from data/taxRecordsData.js)
 
 /**
  * SHAHAPUR TAX DATA SERVICE MODULE
@@ -18,7 +18,7 @@ let taxDataset = [];
 function initTaxData() {
   console.log('[Shahapur GIS - TaxData] Initializing tax dataset from storage key:', STORAGE_KEY);
   
-  // Clean up legacy v1 mock records if present
+  // Remove cached datasets from older app versions
   try {
     ['gis_tax_records_dataset', 'gis_tax_records_dataset_v2'].forEach(k => localStorage.removeItem(k));
   } catch(e) {}
@@ -118,80 +118,6 @@ window.TaxDataService = {
     );
   },
   
-  getSummary: () => {
-    const stats = window.SHAHAPUR_SUMMARY_STATS;
-    if (stats) {
-      return {
-        totalProperties: stats.totalProperties || 0,
-        totalAssessed: stats.totalAssessed || 0,
-        totalRateableValue: stats.totalRateableValue || 0,
-        assessedPropertiesCount: stats.assessedPropertiesCount || 0,
-        unassessedPropertiesCount: stats.unassessedPropertiesCount || 0,
-        totalCollected: 0.0,          // the register has no payment columns
-        totalPending: stats.totalPending || 0,
-        collectionPercentage: '0.00'
-      };
-    }
-    const records = window.TaxDataService.getAll();
-    let totalAssessed = 0, totalRv = 0, assessedCount = 0, unassessedCount = 0;
-    records.forEach(t => {
-      const tax = Number(t.assessedAmount || t.totalTaxOld || 0);
-      const rv = Number(t.rvOld || 0);
-      totalAssessed += tax;
-      totalRv += rv;
-      if (tax > 0) assessedCount++;
-      else unassessedCount++;
-    });
-    return {
-      totalProperties: records.length,
-      totalAssessed: Math.round(totalAssessed * 100) / 100,
-      totalRateableValue: Math.round(totalRv * 100) / 100,
-      assessedPropertiesCount: assessedCount,
-      unassessedPropertiesCount: unassessedCount,
-      totalCollected: 0.0,
-      totalPending: Math.round(totalAssessed * 100) / 100,
-      collectionPercentage: '0.00'
-    };
-  },
-  
-  getWardSummary: (wardNo) => {
-    const stats = window.SHAHAPUR_SUMMARY_STATS;
-    if (stats && wardNo && wardNo !== 'All' && stats.wardTotals && stats.wardTotals[String(wardNo)]) {
-      const wt = stats.wardTotals[String(wardNo)];
-      return {
-        totalProperties: wt.totalProperties,
-        totalAssessed: wt.totalAssessed,
-        totalRateableValue: wt.totalRateableValue,
-        assessedCount: wt.assessedCount,
-        unassessedCount: wt.unassessedCount,
-        totalCollected: 0.0,
-        totalPending: wt.totalPending
-      };
-    }
-    const data = wardNo === 'All' ? window.TaxDataService.getAll() : window.TaxDataService.getByWard(wardNo);
-    let totalAssessed = 0, totalRv = 0;
-    let assessedCount = 0, unassessedCount = 0;
-    
-    data.forEach(t => {
-      const tax = Number(t.assessedAmount || t.totalTaxOld || 0);
-      const rv = Number(t.rvOld || 0);
-      totalAssessed += tax;
-      totalRv += rv;
-      if (tax > 0) assessedCount++;
-      else unassessedCount++;
-    });
-    
-    return {
-      totalProperties: data.length,
-      totalAssessed: Math.round(totalAssessed * 100) / 100,
-      totalRateableValue: Math.round(totalRv * 100) / 100,
-      totalCollected: 0.0,
-      totalPending: Math.round(totalAssessed * 100) / 100,
-      assessedCount,
-      unassessedCount
-    };
-  },
-
   bulkUpdateRecords: (newRecords) => {
     console.log('[Shahapur GIS - TaxData] TaxDataService.bulkUpdateRecords() received', newRecords.length, 'records.');
     let updatedCount = 0;

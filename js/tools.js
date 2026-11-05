@@ -136,7 +136,8 @@ function setupIdentify(view) {
       }).then(res => {
         if (res && res.features && res.features.length > 0) {
           const graphic = res.features[0];
-          const objectId = graphic.attributes.OBJECTID_1 || graphic.attributes.OBJECTID || 1;
+          const objectId = graphic.attributes.OBJECTID_1 || graphic.attributes.OBJECTID;
+          if (!objectId) return;
           const bldg = (window.BUILDINGS_BY_ID && window.BUILDINGS_BY_ID[objectId]) ? window.BUILDINGS_BY_ID[objectId] : graphic.attributes;
           console.info('[Shahapur GIS - Tools] Intersected building polygon feature with ID:', objectId, bldg ? bldg.propNo : null);
           showPropertyPanel(objectId, bldg);
@@ -150,7 +151,8 @@ function setupIdentify(view) {
               const objectId = (attr && (attr.OBJECTID_1 || attr.OBJECTID)) ? (attr.OBJECTID_1 || attr.OBJECTID) : null;
               const bldg = (objectId && window.BUILDINGS_BY_ID && window.BUILDINGS_BY_ID[objectId]) ? window.BUILDINGS_BY_ID[objectId] : attr;
               console.info('[Shahapur GIS - Tools] HitTest resolved graphic feature with ID:', objectId);
-              showPropertyPanel(objectId || 1, bldg);
+              if (!objectId) return;  // only real building hits open the panel
+              showPropertyPanel(objectId, bldg);
             }
           });
         }
@@ -664,7 +666,7 @@ window.printPropertyCard = function(propertyIdentifier, wardNo) {
       </div>
       <h2>शहापूर नगरपंचायत, शहापूर (जि. ठाणे)</h2>
       <h3>SHAHAPUR NAGAR PANCHAYAT, SHAHAPUR (DIST. THANE)</h3>
-      <p>मालमत्ता कर आकारणी व पाहणी नोंदणी अधिकृत पत्रक (२०२५–२०२६)</p>
+      <p>मालमत्ता कर आकारणी व पाहणी नोंदणी पत्रक</p>
       <div class="official-doc-title">
         Official Municipal Property Assessment & Survey Verification Card
       </div>
@@ -811,7 +813,7 @@ window.printPropertyCard = function(propertyIdentifier, wardNo) {
         </thead>
         <tbody>
           <tr>
-            <td style="padding:0.6rem 0.75rem; font-weight:600;">FY 2025–2026</td>
+            <td style="padding:0.6rem 0.75rem; font-weight:600;">Existing assessment register</td>
             <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:800; color:var(--color-primary);">₹${assessed.toLocaleString()}</td>
             <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:700; color:#0284c7;">₹${Number(rec ? (rec.rvOld || 0) : 0).toLocaleString()}</td>
             <td style="padding:0.6rem 0.75rem; text-align:right; font-weight:700; color:#059669;">₹${Number(rec ? (rec.propertyTaxOld || 0) : 0).toLocaleString()}</td>

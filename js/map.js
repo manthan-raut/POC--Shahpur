@@ -131,8 +131,8 @@ function initMap() {
             totalAssessed: f.properties.totalAssessed || 0,
             totalPaid: f.properties.totalPaid || 0,
             totalPending: f.properties.totalPending || 0,
-            status: f.properties.status || 'Pending',
-            unitsCount: f.properties.unitsCount || 1
+            status: f.properties.status || '',
+            unitsCount: f.properties.unitsCount || 0  // untagged footprints have no register units
           }
         });
       });

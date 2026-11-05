@@ -225,8 +225,8 @@ function updateTable() {
       </div>
     `;
 
-    const statusClass = row.status === 'Paid' ? 'paid' : (row.paidAmount > 0 ? 'paid' : 'pending');
-    const locationStr = row.shopBuildingName || row.ownerAddress || row.ownerAddressMarathi || `Ward ${row.wardNo}, Shahapur`;
+    const statusClass = row.status === 'Assessed' || row.status === 'Paid' ? 'paid' : 'pending';
+    const locationStr = row.shopBuildingName || row.ownerAddress || row.ownerAddressMarathi || '';
     const propIdStr = row.propIdentifier || `W${row.wardNo}-#${row.propertyNo}${row.partitionNo ? '/' + row.partitionNo : ''}`;
 
     return `
@@ -240,13 +240,13 @@ function updateTable() {
         </td>
         <td style="padding: 0.85rem 1rem;">
           <div class="prop-owner-wrap">
-            <span class="prop-owner-en">${row.ownerName || 'Property Owner'}</span>
+            <span class="prop-owner-en">${row.ownerName || '<span class="data-na">Owner not recorded</span>'}</span>
             ${row.ownerNameMarathi ? `<span class="prop-owner-mr">${row.ownerNameMarathi}</span>` : ''}
           </div>
         </td>
         <td style="padding: 0.85rem 1rem; font-weight:600; color:#334155;">Ward ${row.wardNo}</td>
         <td style="padding: 0.85rem 1rem; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#475569;" title="${locationStr}">
-          ${locationStr}
+          ${locationStr || '<span class="data-na">Not recorded</span>'}
         </td>
         <td style="padding: 0.85rem 1rem; text-align:right; font-weight:700; color:var(--color-primary);">₹${Number(row.assessedAmount || 0).toLocaleString()}</td>
         <td style="padding: 0.85rem 1rem; text-align:right; color:#0284c7; font-weight:600;">₹${Number(row.rvOld || 0).toLocaleString()}</td>
@@ -368,7 +368,7 @@ window.viewPropertyAssessmentModal = function(propId) {
         <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.25rem;">
           <div class="double-bezel-card" style="padding: 1rem;">
             <div style="font-size:0.72rem; color:#64748b; font-weight:700; text-transform:uppercase;">Owner Name (English & Marathi)</div>
-            <div style="font-size:1.02rem; font-weight:700; color:#0f172a; margin-top:0.25rem;">${rec.ownerName}</div>
+            <div style="font-size:1.02rem; font-weight:700; color:#0f172a; margin-top:0.25rem;">${fmtModalVal(rec.ownerName)}</div>
             ${rec.ownerNameMarathi ? `<div style="font-size:0.875rem; color:#475569; margin-top:0.2rem; font-weight:600;">${rec.ownerNameMarathi}</div>` : ''}
           </div>
           <div class="double-bezel-card" style="padding: 1rem;">

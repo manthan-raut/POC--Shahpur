@@ -123,7 +123,7 @@ Shahapur/
 │   ├── map.js                           # ArcGIS MapView lifecycle, layers & extent setup
 │   ├── layers.js                        # Layer registry, MRSAC sublayers, WMS & opacity UI
 │   ├── tools.js                         # Map measurement, basemap gallery & spatial tools
-│   ├── mockData.js                      # 500+ record fallback property tax dataset generator
+│   ├── taxDataService.js                # Data service over the real register (data/taxRecordsData.js)
 │   ├── taxRecords.js                    # Assessment records table, search & Excel upload UI
 │   ├── reports.js                       # Municipal reports filter interface & export actions
 │   │
@@ -244,20 +244,12 @@ Shahapur/
   - Dispatches `window.dispatchEvent(new Event('resize'))` when toggling so the ArcGIS MapView and Chart.js canvases reflow smoothly.
 
 #### `js/dashboard.js`
-- **Purpose**: Powers the executive analytics dashboard with 9 interactive visualizations and Bento metrics.
+- **Purpose**: Dashboard computed entirely from the register and footprint data (no hard-coded figures).
 - **Key Functions**:
-  - `window.renderDashboard()`: Mounts the Bento grid DOM structure and initializes all Chart.js instances.
-  - Chart Initializers:
-    - **Monthly Tax Collection**: Canvas linear gradient vertical bar chart with collected vs pending revenue.
-    - **Annual Council Target**: Progress bar metric tracking ₹84.0L towards ₹100.0L budget goal.
-    - **Land Use Distribution**: Donut chart with centered `240 Ha` typography and custom HTML legend.
-    - **Building Classification**: Stacked bar chart across Wards 1 to 4 (Residential, Commercial, Government).
-    - **Financial Health Gauge**: Semi-donut gauge displaying 80% collection efficiency.
-    - **Electric Infrastructure**: Curved area chart with purple gradient fill (transmission lines vs poles).
-    - **Solar Point Installation**: Comparison bar chart (Installed vs Planned units).
-    - **Roads & Bridges**: Horizontal bar chart comparing Kutcha road lengths and bridge counts.
-  - Ward Filter Controller (`#db-ward-filter`): Dynamically updates dataset numbers and re-renders chart series when switching between Ward 1, 2, 3, 4, or All Wards.
-  - Chart lifecycle safety: Automatically destroys existing `activeDashboardCharts` before re-rendering to prevent canvas memory leaks.
+  - `window.renderDashboard()`: KPI cards (footprints, register units, % on map / with photo / with plan, water & solar connections).
+  - Charts: ward-wise tax demand & rateable value, assessment coverage gauge, property usage donut, usage by ward, civic amenities by ward, data-linkage coverage by ward.
+  - Infrastructure counts (poles, bridges, roads, fencing) come live from the MRSAC MapServer and show "—" when it is unavailable.
+  - Ward filter (`#db-ward-filter`) recomputes the KPIs, gauge, usage and top-demand list for one ward.
 
 #### `js/map.js`
 - **Purpose**: ArcGIS Maps SDK for JavaScript (v4.29) Map and MapView lifecycle manager.
@@ -284,32 +276,26 @@ Shahapur/
   - Expandable Basemap Gallery (`esri/widgets/BasemapGallery`).
   - Fullscreen toggle, GPS locate tool, and Extent reset button.
 
-#### `js/mockData.js`
-- **Purpose**: Generates and persists a realistic property tax dataset when no live backend API is connected.
+#### `js/taxDataService.js`
+- **Purpose**: `window.TaxDataService` over the 8,685 real register units loaded from `data/taxRecordsData.js`.
 - **Key Details**:
-  - Generates 500 property records matching GIS `OBJECTID_1` building identifiers across Wards 1 to 10.
-  - Attributes: `propertyId`, `wardNo`, `ownerName`, `assessedAmount`, `paidAmount`, `pendingAmount`, `status` ("Paid" | "Pending"), and `lastPaymentDate`.
-  - Persists data in browser `localStorage` under `'gis_tax_records_dataset'`.
-  - Exposes `resetMockData()` to restore the initial state.
+  - Exact lookups only: `getByPropertyId(id)` (ownerID, unit key `ward-prop-partition`, or `W1-2/3`) and `getAllByPropertyNo(ward, prop)`.
+  - `searchRecords(query)`, `getByWard(ward)`, `bulkUpdateRecords(rows)` (Excel import — only supplied columns are changed) and `resetData()`.
+  - The register has no payment columns, so `paidAmount` is 0 until payments are imported.
 
 #### `js/taxRecords.js`
 - **Purpose**: Ward-wise tax assessment table, search interface, and Excel upload parser.
 - **Key Features**:
   - Search by Property ID or Owner Name with live table debounce filtering.
-  - Ward dropdown filter (Wards 1–10).
+  - Ward dropdown filter (Wards 1–5).
   - **Phase 2 Excel Ingestion**: Reads uploaded `.xlsx`, `.xls`, or `.csv` files using SheetJS (`XLSX.read`), validates column headers, updates the dataset in memory and `localStorage`, and displays a success banner.
-  - Sample Excel generator (`#btn-download-sample`): Generates and downloads a pre-formatted template spreadsheet for quick testing.
+  - Template download (`#btn-download-sample`): an import template pre-filled with the first real register rows and empty payment columns.
   - Modal Property Inspector: Clicking any table row opens a modal dialog displaying detailed tax history.
 
 #### `js/reports.js`
-- **Purpose**: Municipal report filtering interface and export orchestration.
-- **Key Features**:
-  - Report type selector:
-    1. *Ward-wise Tax Collection* (aggregates assessed vs paid amounts by ward).
-    2. *Ward-wise Unpaid Tax Properties* (filters records with pending balances).
-    3. *Defaulters List (All Wards)* (identifies top outstanding balances).
-  - Dynamic filter panel: Ward selector and minimum outstanding balance slider.
-  - Export action triggers dispatching filtered data to PDF, Excel, and CSV export modules.
+- **Purpose**: Register-based reports with an on-screen preview of exactly the rows that are exported.
+- **Reports**: Ward-wise Assessment Summary, Property Register, High Tax Demand, Unassessed Units, Data Gaps (missing photo / plan / map footprint).
+- **Filters**: ward, status, minimum tax demand, missing item — shown only for reports that use them.
 
 ---
 
@@ -326,7 +312,7 @@ Shahapur/
 - **Purpose**: Native Excel (`.xlsx`) workbook generation using SheetJS (`XLSX`).
 - **Features**:
   - Converts JSON assessment objects into an Excel worksheet via `XLSX.utils.json_to_sheet()`.
-  - Assigns clean column headers (`Property ID`, `Owner Name`, `Ward No`, `Assessed Amount (Rs)`, `Paid Amount (Rs)`, `Pending Amount (Rs)`, `Status`).
+  - Uses the column list of the selected report; numeric columns stay numeric so Excel can sum them.
   - Packages sheets into a workbook and triggers an instant download.
 
 #### `js/export/exportPdf.js`
@@ -504,7 +490,7 @@ The ArcGIS JavaScript API uses a Dojo-based AMD loader (`require([...])`). If ge
 <script src="https://js.arcgis.com/4.29/"></script>
 
 <!-- 3. Application modules load THIRD -->
-<script src="js/mockData.js"></script>
+<script src="js/taxDataService.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/router.js"></script>
 <script src="js/map.js"></script>

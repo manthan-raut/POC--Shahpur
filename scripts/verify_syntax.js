@@ -7,7 +7,7 @@ const files = [
   'data/wardsData.js',
   'data/buildingsData.js',
   'data/taxRecordsData.js',
-  'js/mockData.js',
+  'js/taxDataService.js',
   'js/auth.js',
   'js/sidebar.js',
   'js/router.js',
